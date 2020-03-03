@@ -54,21 +54,17 @@ public class GrappleTestPlayer : MonoBehaviour
         {
             if (!grappling && grapple_Component.currentGrappleState == Grapple.GrapplingState.Ready)
             {
-                //Debug.Log("StartGrapple");
                 grapple_Component.StartGrapple();
-                //grappling = true;
+            }
+            else
+            {
+                grapple_Component.holding = true;
             }
         }
-        /*
-        if (Input.GetButton("Fire1"))
-        {
-            grapple_Component.holding = true;
-        }
-        */
+      
         if (Input.GetButtonUp("Fire1"))
         {
-            //Debug.Log("ReleaseGrapple");
-            grapple_Component.ReleaseGrapple();
+           grapple_Component.ReleaseGrapple();
         }
 
         if (!grappling)
@@ -80,7 +76,6 @@ public class GrappleTestPlayer : MonoBehaviour
             }
             if (Input.GetButtonDown("Jump") && grounded == true)
             {
-                //Debug.Log("Jump");
                 rb_Component.velocity = new Vector2(rb_Component.velocity.x, 0);
                 rb_Component.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             }

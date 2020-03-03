@@ -12,30 +12,33 @@ public class Grapple : MonoBehaviour
     /// </summary>
     #endregion
     #region variables
+    // enum to manage the states of the grappling cycle
     public enum GrapplingState { Shooting, Reeling, Holding, Cooldown, Ready }
     public GrapplingState currentGrappleState = GrapplingState.Ready;
-
+    // components
     public Rigidbody2D rb_Component;
     public GrappleTestPlayer player_Component;
-
+    // cooldown timer
     public float grappleCooldown;
     public float grappleRechargeTime;
-
+    // timing of the grapple
     public float grappleShootDelay;
     public float grappleShootSpeed;
     public float grappleReelDelay;
     public float grappleReelSpeed;
-
+    // range limit for the hook
     public float grappleRange;
-
+    // prefabs
     public GameObject hookPrefab;
     public GameObject ropePrefab;
     public GameObject basePrefab;
+    // locatio grappling instantiates from
     public Transform grappleOrigin;
+    // current hook
     GameObject currentHook;
     GameObject currentBase;
     GameObject currentRope;
-
+    // bool recording whether the player is holding the input
     public bool holding = false;
     #endregion
     #region setup
