@@ -859,12 +859,11 @@ MonoBehaviour:
   player_Component: {fileID: 0}
   grappleCooldown: 2
   grappleRechargeTime: 0
-  grappleShootDelay: 0.2
+  grappleShootDelay: 0.1
   grappleShootSpeed: 3
-  grappleReelDelay: 0.3
+  grappleReelDelay: 0.5
   grappleReelSpeed: 6
-  grappleRange: 10
-  grappleSpeed: 0
+  grappleRange: 3
   hookPrefab: {fileID: 6077677492883251746, guid: 5c69329b04e963448b4e56678a2fa2d4,
     type: 3}
   ropePrefab: {fileID: 5430124327926717280, guid: c47b5715131abd343bbc1e6759ef4647,

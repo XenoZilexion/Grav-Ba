@@ -53,7 +53,7 @@ public class Grapple : MonoBehaviour
         HoldCheck();
 
         Debug.Log(currentGrappleState);
-        Debug.Log(player_Component.rb_Component.velocity);
+        //Debug.Log(player_Component.rb_Component.velocity);
     }
     #endregion
     #region functions
@@ -66,8 +66,15 @@ public class Grapple : MonoBehaviour
         //player_Component.rb_Component.isKinematic = true;
         //player_Component.rb_Component.velocity = new Vector2(0,0);
 
-
-        ShootGrapple();
+        if (grappleShootDelay > 0)
+        {
+            Invoke("ShootGrapple", grappleShootDelay);
+        }
+        else
+        {
+            ShootGrapple();
+        }
+        
 
 
     }
@@ -79,7 +86,9 @@ public class Grapple : MonoBehaviour
         currentBase = newBase;
 
         GameObject newHook = Instantiate(hookPrefab, grappleOrigin.position, Quaternion.identity);
-
+        newHook.GetComponent<Hook>().grapple_Component = this;
+        newHook.GetComponent<Transform>().eulerAngles = new Vector3(0, 0, Mathf.Atan2(player_Component.facingDirection.y - 0, player_Component.facingDirection.x - 0) * Mathf.Rad2Deg);
+        newHook.GetComponent<Rigidbody2D>().velocity = player_Component.facingDirection * grappleShootSpeed;
         currentHook = newHook;
 
         GameObject newRope = Instantiate(ropePrefab, grappleOrigin.position, Quaternion.identity);
@@ -89,6 +98,10 @@ public class Grapple : MonoBehaviour
     }
     #endregion
     #region reeling
+    public void HookLocked()
+    {
+
+    }
     public void BeginReel()
     {
 
@@ -108,9 +121,20 @@ public class Grapple : MonoBehaviour
             Destroy(currentRope);
             Destroy(currentHook);
             Destroy(currentBase);
-
+            Debug.Log("Hold Release");
         }
     }
+
+    public void HookBreak()
+    {
+        currentGrappleState = GrapplingState.Cooldown;
+        grappleRechargeTime = Time.time + grappleCooldown;
+        Destroy(currentRope);
+        Destroy(currentHook);
+        Destroy(currentBase);
+        Debug.Log("Out Of Range");
+    }
+
     #endregion
     #region cooldown
     void GrappleCooldownStart()
