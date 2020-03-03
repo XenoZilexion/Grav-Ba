@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        rb.velocity = jumpVector;
+        rb.AddForce();
     }
 
 }
