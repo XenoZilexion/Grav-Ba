@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform playerTransform;
-    public float rotationSpeed = 30.0f;
-
-    private float elapsedRotation = 0.0f;
+    public Animator cameraStateMachine;
+    private int index = 0;
+    private List<int> angles = new List<int>() { 0, 90, 180, 270 };
     // Start is called before the first frame update
     void Start()
     {
@@ -24,21 +23,22 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            if(--index < 0)
+            {
+                index = 3;
+            }
+            cameraStateMachine.SetTrigger("AngleChanged");
+            cameraStateMachine.SetInteger("Angle", angles[index]);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
+            if(++index > 3)
+            {
+                index = 0;
+            }
+            cameraStateMachine.SetTrigger("AngleChanged");
+            cameraStateMachine.SetInteger("Angle", angles[index]);
         }
-    }
-
-    private void Rotate(int direction)
-    {
-        while (elapsedRotation < 90.0f)
-        {
-            elapsedRotation += rotationSpeed * Time.deltaTime;
-            transform.RotateAround(playerTransform.position, Vector3.forward, direction * elapsedRotation);
-        }
-
-        elapsedRotation = 0.0f;
     }
 }
