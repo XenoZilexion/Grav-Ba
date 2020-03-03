@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/GreyBox.asset.meta
-guid: 8df56f68cb2e1b247adbbdfb72e9ea90
-NativeFormatImporter:
-=======
 guid: 17e88cae1b23b144a918e16f99c1d3a3
 folderAsset: yes
 DefaultImporter:
->>>>>>> Gameplay:Assets/Scripts.meta
   externalObjects: {}
-  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
