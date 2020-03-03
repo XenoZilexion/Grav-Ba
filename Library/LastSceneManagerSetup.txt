@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/LevelDesign_Layout.unity
+=======
+- path: Assets/Scenes/SampleScene.unity
+>>>>>>> Gameplay
   isLoaded: 1
   isActive: 1
   isSubScene: 0
