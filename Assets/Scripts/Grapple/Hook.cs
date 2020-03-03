@@ -34,7 +34,7 @@ public class Hook : MonoBehaviour
 
         //Debug.Log(Mathf.Abs(Vector2.Distance(origin, this.transform.position)));
         //Debug.Log(grapple_Component.grappleRange);
-        Debug.Log(origin);
+        //Debug.Log(origin);
         if (!hooked && (Mathf.Abs(Vector2.Distance(origin, this.transform.position)) >= grapple_Component.grappleRange))
         {
             grapple_Component.HookBreak();

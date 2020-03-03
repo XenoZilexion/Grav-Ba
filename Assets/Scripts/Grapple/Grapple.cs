@@ -50,6 +50,7 @@ public class Grapple : MonoBehaviour
     void Update()
     {
         CheckCooldown();
+        Reel();
         HoldCheck();
 
         Debug.Log(currentGrappleState);
@@ -100,13 +101,49 @@ public class Grapple : MonoBehaviour
     #region reeling
     public void HookLocked()
     {
-
+        rb_Component.isKinematic = true;
+        rb_Component.velocity = Vector2.zero;
+        if (grappleReelDelay>0)
+        {
+            Invoke("BeginReel", grappleReelDelay);
+        }
+        else
+        {
+            BeginReel();
+        }
+        
     }
     public void BeginReel()
     {
-
+        currentGrappleState = GrapplingState.Reeling;
     }
+    public void Reel()
+    {
+        if (currentGrappleState == GrapplingState.Reeling)
+        {
 
+            //Debug.Log("this position: " + this.transform.position);
+            //Debug.Log("Normalized: "+ Vector3.Normalize((this.transform.position + ((currentHook.transform.position - this.transform.position)/2))));
+            //Debug.Log("Magnitude: " + Vector3.Magnitude(Vector3.Normalize((this.transform.position + ((currentHook.transform.position - this.transform.position))))));
+            Vector3 newVelocity;
+            newVelocity = (currentHook.transform.position - this.transform.position);
+            newVelocity = Vector3.Normalize(newVelocity)*grappleReelSpeed;
+            rb_Component.velocity = newVelocity;
+
+            Debug.DrawLine(this.transform.position, (((this.transform.position + ((currentHook.transform.position - this.transform.position))))), Color.red,.1f);
+            //Debug.DrawLine(this.transform.position, this.transform.position + (Vector3.Normalize((this.transform.position + ((currentHook.transform.position - this.transform.position) / 2))) * grappleReelSpeed), Color.red, .1f);
+            //Debug.DrawLine(this.transform.position, currentHook.transform.position, Color.blue, .1f);
+
+            if ((Vector2.Distance(this.transform.position, currentHook.transform.position)) <= (grappleReelSpeed * Time.fixedDeltaTime))
+            {
+                rb_Component.velocity = Vector2.zero;
+                rb_Component.position = currentHook.transform.position;
+                currentGrappleState = GrapplingState.Holding;
+            }
+        }
+
+        
+    }
     public void ReleaseGrapple()
     {
         holding = false;
@@ -117,6 +154,7 @@ public class Grapple : MonoBehaviour
         if (!holding && currentGrappleState == GrapplingState.Holding)
         {
             currentGrappleState = GrapplingState.Cooldown;
+            rb_Component.isKinematic = false;
             grappleRechargeTime = Time.time + grappleCooldown;
             Destroy(currentRope);
             Destroy(currentHook);
