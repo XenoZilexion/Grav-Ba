@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
-    public float jumpForce = 1.0f;
+    public float speedLimit = 5.0f;
+    public float smoothingValue = 0.1f;
 
+    public float jumpForce = 1.0f;
     public float fallMultiplier = 2.0f;
+
 
     public bool grounded;
     public LayerMask whatIsGround;
@@ -19,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 positionChange;
 
+    private Vector3 currentVelocity = Vector3.zero;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,6 +33,8 @@ public class PlayerController : MonoBehaviour
     {
         CheckGround();
         Fall();
+
+        horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
     private void FixedUpdate()
@@ -37,11 +44,15 @@ public class PlayerController : MonoBehaviour
 
     private void ControllerInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
 
         if (horizontalInput != 0)
         {
-            transform.Translate(Vector2.right * horizontalInput * moveSpeed * Time.deltaTime);
+            Vector3 targetVelocity = new Vector2(moveSpeed * horizontalInput, rb.velocity.y);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, smoothingValue);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
         if (Input.GetKeyDown(KeyCode.W) && grounded)
@@ -57,7 +68,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        grounded = false;
+        rb.AddForce(Vector2.up * jumpForce);
     }
 
     private void Fall()
