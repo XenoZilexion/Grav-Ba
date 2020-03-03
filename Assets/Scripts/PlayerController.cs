@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
+    public float jumpForce = 1.0f;
 
-    public Vector2 jumpVector;
+    public float fallMultiplier = 2.0f;
 
     public bool grounded;
     public LayerMask whatIsGround;
-    public bool stoppedJumping;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckGround();
+        Fall();
     }
 
     private void FixedUpdate()
@@ -36,12 +37,12 @@ public class PlayerController : MonoBehaviour
 
     private void ControllerInput()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        positionChange = transform.position;
+        horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        positionChange.x = positionChange.x + (horizontalInput * moveSpeed);
-
-        rb.MovePosition(positionChange);
+        if (horizontalInput != 0)
+        {
+            transform.Translate(Vector2.right * horizontalInput * moveSpeed * Time.deltaTime);
+        }
 
         if (Input.GetKeyDown(KeyCode.W) && grounded)
         {
@@ -56,7 +57,19 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddForce();
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    private void Fall()
+    {
+        if (rb.velocity.y < 0)
+        {
+            rb.gravityScale = fallMultiplier;
+        }
+        else
+        {
+            rb.gravityScale = 1.0f;
+        }
     }
 
 }

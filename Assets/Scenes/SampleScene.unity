@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -392,6 +393,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d76c411c0080304ab379cd8ac40ebc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 2082668110}
+  rotationSpeed: 10
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -680,7 +695,7 @@ GameObject:
   - component: {fileID: 2082668111}
   m_Layer: 0
   m_Name: George
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -780,7 +795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082668106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.52, y: -3.97, z: 0}
+  m_LocalPosition: {x: -1.09, y: -3.86, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 317760127}
@@ -799,12 +814,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f64b3d4cc4965d4bb123f2e9d89ba63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
-  jumpVector: {x: 0, y: 1}
+  moveSpeed: 5
+  jumpForce: 5
+  fallMultiplier: 1.5
   grounded: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  stoppedJumping: 0
   groundCheck: {fileID: 317760127}
   groundCheckRadius: 0.5
