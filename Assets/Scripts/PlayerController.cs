@@ -150,7 +150,24 @@ public class PlayerController : MonoBehaviour
     private void Fall()
     {
         if (!grappling) {
-            if (rb.velocity.y < 0)
+            float fallVelocity = 0.0f;
+            switch (currentGravity)
+            {
+                case gravityDirection.down:
+                    fallVelocity = rb.velocity.y;
+                    break;
+                case gravityDirection.right:
+                    fallVelocity = -rb.velocity.x;
+                    break;
+                case gravityDirection.up:
+                    fallVelocity = -rb.velocity.y;
+                    break;
+                case gravityDirection.left:
+                    fallVelocity = rb.velocity.x;
+                    break;
+            }
+
+            if (fallVelocity < 0)
             {
                 rb.gravityScale = fallMultiplier;
                 anim.SetBool("Fall", true);
