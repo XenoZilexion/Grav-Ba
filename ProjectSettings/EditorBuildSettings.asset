@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/GrappleArtTest.unity
-    guid: bb33c3d99b6d2fb49863cbd5a5acd035
+    path: Assets/Scenes/ArtAssets.unity
+    guid: 9d97484dd5fb0414eaba66760e1b31b6
   m_configObjects: {}
