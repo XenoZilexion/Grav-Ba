@@ -694,7 +694,7 @@ Transform:
   m_GameObject: {fileID: 1924903669}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2082668110}
   m_RootOrder: 0
@@ -756,7 +756,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.275
+  m_Radius: 0.48
 --- !u!212 &2082668109
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -798,7 +798,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -274871800610294322, guid: 711148c91aa211c4e95f89f6eb4b990f,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.55, y: 0.54}
@@ -816,7 +816,7 @@ Transform:
   m_GameObject: {fileID: 2082668106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1924903670}
   m_Father: {fileID: 0}
@@ -836,6 +836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb_Component: {fileID: 0}
   grapple_Component: {fileID: 0}
+  sr_Component: {fileID: 0}
   moveSpeed: 5
   jumpSpeed: 5
   maxFallSpeed: -5
@@ -854,16 +855,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5d41dfbbbd276429149207d1acc1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGrappleState: 2
+  currentGrappleState: 3
   rb_Component: {fileID: 0}
   player_Component: {fileID: 0}
   grappleCooldown: 2
   grappleRechargeTime: 0
-  grappleShootDelay: 0.1
-  grappleShootSpeed: 3
-  grappleReelDelay: 0.5
-  grappleReelSpeed: 6
-  grappleRange: 3
+  grappleShootDelay: 0.05
+  grappleShootSpeed: 20
+  grappleReelDelay: 0.15
+  grappleReelSpeed: 15
+  grappleRange: 6
   hookPrefab: {fileID: 6077677492883251746, guid: 5c69329b04e963448b4e56678a2fa2d4,
     type: 3}
   ropePrefab: {fileID: 5430124327926717280, guid: c47b5715131abd343bbc1e6759ef4647,
@@ -872,3 +873,4 @@ MonoBehaviour:
     type: 3}
   grappleOrigin: {fileID: 1924903670}
   holding: 0
+  buttonName: Fire1

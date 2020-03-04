@@ -11,7 +11,6 @@ public class Rope : MonoBehaviour
     /// Simple script to manage the rope connecting the hook to the player.
     /// </summary>
     #endregion
-
     #region variables
     // location of the player's grapple origin
     public Transform grappleOrigin;
@@ -20,7 +19,6 @@ public class Rope : MonoBehaviour
     // sprite renderer component
     public SpriteRenderer sr_Component;
     #endregion
-
     #region setup
     void Start()
     {
@@ -28,14 +26,12 @@ public class Rope : MonoBehaviour
         sr_Component = GetComponent<SpriteRenderer>();
     }
     #endregion
-
     #region updates
     void Update()
     {
         AdjustRope();
     }
     #endregion
-
     #region functions
     public void AdjustRope()
     {
@@ -47,5 +43,4 @@ public class Rope : MonoBehaviour
         this.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(hookLocation.position.y - grappleOrigin.position.y, hookLocation.position.x - grappleOrigin.position.x) * Mathf.Rad2Deg);
     }
     #endregion
-
 }

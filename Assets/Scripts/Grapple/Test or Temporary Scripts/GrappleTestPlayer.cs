@@ -15,6 +15,7 @@ public class GrappleTestPlayer : MonoBehaviour
     #region variables
     public Rigidbody2D rb_Component;
     public Grapple grapple_Component;
+    public SpriteRenderer sr_Component;
 
     public float moveSpeed;
     public float jumpSpeed;
@@ -29,6 +30,7 @@ public class GrappleTestPlayer : MonoBehaviour
     {
         rb_Component = GetComponent<Rigidbody2D>();
         grapple_Component = GetComponent<Grapple>();
+        sr_Component = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,14 @@ public class GrappleTestPlayer : MonoBehaviour
 
     void GetInputs()
     {
+        if (!sr_Component.flipX)
+        {
+            facingDirection = Vector2.right;
+        }
+        else
+        {
+            facingDirection = Vector2.left;
+        }
 
         if (grapple_Component.currentGrappleState == Grapple.GrapplingState.Cooldown || grapple_Component.currentGrappleState == Grapple.GrapplingState.Ready)
         {
@@ -50,22 +60,7 @@ public class GrappleTestPlayer : MonoBehaviour
             grappling = true;
         }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (!grappling && grapple_Component.currentGrappleState == Grapple.GrapplingState.Ready)
-            {
-                grapple_Component.StartGrapple();
-            }
-            else
-            {
-                grapple_Component.holding = true;
-            }
-        }
-      
-        if (Input.GetButtonUp("Fire1"))
-        {
-           grapple_Component.ReleaseGrapple();
-        }
+        
 
         if (!grappling)
         {

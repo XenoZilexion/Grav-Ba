@@ -12,12 +12,13 @@ public class GrappleBase : MonoBehaviour
     /// </summary>
     #endregion
     #region variables
-    public GrappleTestPlayer player_Component;
+    // reference to parent
+    public PlayerController player_Component;
     #endregion
-
     #region updates
     void Update()
     {
+        // sets rotation to direction player is facing
         SetBaseRotation();
     }
     #endregion

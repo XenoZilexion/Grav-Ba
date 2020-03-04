@@ -17,7 +17,7 @@ public class Grapple : MonoBehaviour
     public GrapplingState currentGrappleState = GrapplingState.Ready;
     // components
     public Rigidbody2D rb_Component;
-    public GrappleTestPlayer player_Component;
+    public PlayerController player_Component;
     // cooldown timer
     public float grappleCooldown;
     public float grappleRechargeTime;
@@ -40,36 +40,58 @@ public class Grapple : MonoBehaviour
     GameObject currentRope;
     // bool recording whether the player is holding the input
     public bool holding = false;
+    // input button to use for grappling
+    public string buttonName;
     #endregion
     #region setup
     void Start()
     {
+        // get components
         rb_Component = GetComponent<Rigidbody2D>();
-        player_Component = GetComponent<GrappleTestPlayer>();
+        player_Component = GetComponent<PlayerController>();
+        // starting state is set to cooldown, this was done to prevent shooting when just starting playing, mostly for testing convenience sake.
         grappleRechargeTime = Time.time + 1;
     }
     #endregion
     #region updates
     void Update()
     {
+        GetInputs();
         CheckCooldown();
         Reel();
         HoldCheck();
-
-        Debug.Log(currentGrappleState);
-        //Debug.Log(player_Component.rb_Component.velocity);
     }
     #endregion
     #region functions
+    #region input
+    public void GetInputs()
+    {
+        // Grapple input and holding
+        if (Input.GetButtonDown(buttonName))
+        {
+            if (currentGrappleState == Grapple.GrapplingState.Ready)
+            {
+                StartGrapple();
+            }
+            else
+            {
+                holding = true;
+            }
+        }
+
+        if (Input.GetButtonUp(buttonName))
+        {
+            ReleaseGrapple();
+        }
+    }
+    #endregion
     #region shooting
     public void StartGrapple()
     {
+        //begin hold, start shooting
         holding = true;
         currentGrappleState = GrapplingState.Shooting;
-        //player_Component.rb_Component.simulated = false;
-        //player_Component.rb_Component.isKinematic = true;
-        //player_Component.rb_Component.velocity = new Vector2(0,0);
-
+        // delay shoot if there is a delay, otherwise, shoot
         if (grappleShootDelay > 0)
         {
             Invoke("ShootGrapple", grappleShootDelay);
@@ -78,23 +100,29 @@ public class Grapple : MonoBehaviour
         {
             ShootGrapple();
         }
-        
-
-
     }
-
     public void ShootGrapple()
     {
+        // freeze player movement
+        //rb_Component.isKinematic = true;
+
+        rb_Component.gravityScale = 0;
+        rb_Component.velocity = Vector2.zero;
+
+        // create grapple base
         GameObject newBase = Instantiate(basePrefab, grappleOrigin);
         newBase.GetComponent<GrappleBase>().player_Component = player_Component;
+        newBase.GetComponent<Transform>().eulerAngles = new Vector3(0, 0, Mathf.Atan2(player_Component.facingDirection.y - 0, player_Component.facingDirection.x - 0) * Mathf.Rad2Deg);
         currentBase = newBase;
 
+        // create the grapple hook
         GameObject newHook = Instantiate(hookPrefab, grappleOrigin.position, Quaternion.identity);
         newHook.GetComponent<Hook>().grapple_Component = this;
         newHook.GetComponent<Transform>().eulerAngles = new Vector3(0, 0, Mathf.Atan2(player_Component.facingDirection.y - 0, player_Component.facingDirection.x - 0) * Mathf.Rad2Deg);
         newHook.GetComponent<Rigidbody2D>().velocity = player_Component.facingDirection * grappleShootSpeed;
         currentHook = newHook;
 
+        // create the connecting section
         GameObject newRope = Instantiate(ropePrefab, grappleOrigin.position, Quaternion.identity);
         newRope.GetComponent<Rope>().grappleOrigin = currentBase.transform;
         newRope.GetComponent<Rope>().hookLocation = currentHook.transform;
@@ -104,8 +132,12 @@ public class Grapple : MonoBehaviour
     #region reeling
     public void HookLocked()
     {
+        // old location of movement lock
+        /*
         rb_Component.isKinematic = true;
         rb_Component.velocity = Vector2.zero;
+        */
+        // delay start of reeling if delay, otherwise, begin reeling in
         if (grappleReelDelay>0)
         {
             Invoke("BeginReel", grappleReelDelay);
@@ -118,29 +150,25 @@ public class Grapple : MonoBehaviour
     }
     public void BeginReel()
     {
+        // set reel state
         currentGrappleState = GrapplingState.Reeling;
     }
     public void Reel()
     {
+        // if reeling, 
         if (currentGrappleState == GrapplingState.Reeling)
         {
-
-            //Debug.Log("this position: " + this.transform.position);
-            //Debug.Log("Normalized: "+ Vector3.Normalize((this.transform.position + ((currentHook.transform.position - this.transform.position)/2))));
-            //Debug.Log("Magnitude: " + Vector3.Magnitude(Vector3.Normalize((this.transform.position + ((currentHook.transform.position - this.transform.position))))));
+            // get direction to the hook, create velocity in that direction
             Vector3 newVelocity;
-            newVelocity = (currentHook.transform.position - this.transform.position);
+            newVelocity = (currentHook.GetComponent<Hook>().lockPoint.transform.position - this.transform.position);
             newVelocity = Vector3.Normalize(newVelocity)*grappleReelSpeed;
             rb_Component.velocity = newVelocity;
 
-            Debug.DrawLine(this.transform.position, (((this.transform.position + ((currentHook.transform.position - this.transform.position))))), Color.red,.1f);
-            //Debug.DrawLine(this.transform.position, this.transform.position + (Vector3.Normalize((this.transform.position + ((currentHook.transform.position - this.transform.position) / 2))) * grappleReelSpeed), Color.red, .1f);
-            //Debug.DrawLine(this.transform.position, currentHook.transform.position, Color.blue, .1f);
-
-            if ((Vector2.Distance(this.transform.position, currentHook.transform.position)) <= (grappleReelSpeed * Time.fixedDeltaTime))
+            // if going to overshoot the lockpoint, lock onto the lockpoint
+            if ((Vector2.Distance(this.transform.position, currentHook.GetComponent<Hook>().lockPoint.transform.position)) <= (grappleReelSpeed * Time.fixedDeltaTime))
             {
                 rb_Component.velocity = Vector2.zero;
-                rb_Component.position = currentHook.transform.position;
+                rb_Component.position = currentHook.GetComponent<Hook>().lockPoint.transform.position;
                 currentGrappleState = GrapplingState.Holding;
             }
         }
@@ -154,37 +182,46 @@ public class Grapple : MonoBehaviour
 
     void HoldCheck()
     {
+        // end hook hold
         if (!holding && currentGrappleState == GrapplingState.Holding)
         {
             currentGrappleState = GrapplingState.Cooldown;
-            rb_Component.isKinematic = false;
+            //rb_Component.isKinematic = false;
+
+            rb_Component.gravityScale = 1;
+
             grappleRechargeTime = Time.time + grappleCooldown;
             Destroy(currentRope);
             Destroy(currentHook);
             Destroy(currentBase);
-            Debug.Log("Hold Release");
         }
     }
 
     public void HookBreak()
     {
+        //break hook manually
         currentGrappleState = GrapplingState.Cooldown;
+        //rb_Component.isKinematic = false;
+
+        rb_Component.gravityScale = 1;
+
         grappleRechargeTime = Time.time + grappleCooldown;
         Destroy(currentRope);
         Destroy(currentHook);
         Destroy(currentBase);
-        Debug.Log("Out Of Range");
     }
 
     #endregion
     #region cooldown
     void GrappleCooldownStart()
     {
+        // cooldown set
         grappleRechargeTime = Time.time + grappleCooldown;
     }
 
     void CheckCooldown()
     {
+        // check end of cooldown
         if (currentGrappleState == GrapplingState.Cooldown)
         {
             if (Time.time >= grappleRechargeTime)
@@ -194,5 +231,13 @@ public class Grapple : MonoBehaviour
         }
     }
     #endregion
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (currentGrappleState == GrapplingState.Reeling)
+        {
+            rb_Component.velocity = Vector2.zero;
+            currentGrappleState = GrapplingState.Holding;
+        }
+    }
     #endregion
 }

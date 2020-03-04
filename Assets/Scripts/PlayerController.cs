@@ -24,6 +24,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 positionChange;
 
     private Vector3 currentVelocity = Vector3.zero;
+
+    // grapple implementation
+    public Vector2 facingDirection;
+    public SpriteRenderer sr_Component;
+    public Grapple grapple_Component;
+    public bool grappling;
+
     private enum gravityDirection
     {
         down,
@@ -37,13 +44,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr_Component = GetComponent<SpriteRenderer>();
+        grapple_Component = GetComponent<Grapple>();
     }
 
     void Update()
     {
         CheckGround();
         Fall();
-
+        FacingDirection();
         horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
@@ -54,88 +63,96 @@ public class PlayerController : MonoBehaviour
 
     private void ControllerInput()
     {
-
-        if (horizontalInput != 0)
+        if (!grappling)
         {
-            Vector3 targetVelocity = new Vector2();
-            switch (currentGravity)
+            if (horizontalInput != 0)
             {
-                case gravityDirection.down:
-                    targetVelocity = new Vector2(moveSpeed * horizontalInput, rb.velocity.y);
-                    break;
-                case gravityDirection.right:
-                    targetVelocity = new Vector2(rb.velocity.x, moveSpeed * horizontalInput);
-                    break;
-                case gravityDirection.up:
-                    targetVelocity = new Vector2(-1 * moveSpeed * horizontalInput, rb.velocity.y);
-                    break;
-                case gravityDirection.left:
-                    targetVelocity = new Vector2(rb.velocity.x, -1 * moveSpeed * horizontalInput);
-                    break;
+                Vector3 targetVelocity = new Vector2();
+                switch (currentGravity)
+                {
+                    case gravityDirection.down:
+                        targetVelocity = new Vector2(moveSpeed * horizontalInput, rb.velocity.y);
+                        break;
+                    case gravityDirection.right:
+                        targetVelocity = new Vector2(rb.velocity.x, moveSpeed * horizontalInput);
+                        break;
+                    case gravityDirection.up:
+                        targetVelocity = new Vector2(-1 * moveSpeed * horizontalInput, rb.velocity.y);
+                        break;
+                    case gravityDirection.left:
+                        targetVelocity = new Vector2(rb.velocity.x, -1 * moveSpeed * horizontalInput);
+                        break;
+                }
+
+
+                rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, smoothingValue);
+            }
+            else
+            {
+                switch (currentGravity)
+                {
+                    case gravityDirection.down:
+                        rb.velocity = new Vector2(0.0f, rb.velocity.y);
+                        break;
+                    case gravityDirection.right:
+                        rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+                        break;
+                    case gravityDirection.up:
+                        rb.velocity = new Vector2(0.0f, rb.velocity.y);
+                        break;
+                    case gravityDirection.left:
+                        rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+                        break;
+                }
             }
 
-            
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, smoothingValue);
-        }
-        else
-        {
-            switch (currentGravity)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
             {
-                case gravityDirection.down:
-                    rb.velocity = new Vector2(0.0f, rb.velocity.y);
-                    break;
-                case gravityDirection.right:
-                    rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-                    break;
-                case gravityDirection.up:
-                    rb.velocity = new Vector2(0.0f, rb.velocity.y);
-                    break;
-                case gravityDirection.left:
-                    rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-                    break;
+                Jump();
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
-        {
-            Jump();
         }
     }
 
     private void CheckGround()
     {
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        if (!grappling) {
+            grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        }
     }
 
     private void Jump()
     {
-        grounded = false;
-        switch (currentGravity)
-        {
-            case gravityDirection.down:
-                rb.AddForce(Vector2.up * jumpForce);
-                break;
-            case gravityDirection.right:
-                rb.AddForce(Vector2.left * jumpForce);
-                break;
-            case gravityDirection.up:
-                rb.AddForce(Vector2.down * jumpForce);
-                break;
-            case gravityDirection.left:
-                rb.AddForce(Vector2.right * jumpForce);
-                break;
+        if (!grappling) {
+            grounded = false;
+            switch (currentGravity)
+            {
+                case gravityDirection.down:
+                    rb.AddForce(Vector2.up * jumpForce);
+                    break;
+                case gravityDirection.right:
+                    rb.AddForce(Vector2.left * jumpForce);
+                    break;
+                case gravityDirection.up:
+                    rb.AddForce(Vector2.down * jumpForce);
+                    break;
+                case gravityDirection.left:
+                    rb.AddForce(Vector2.right * jumpForce);
+                    break;
+            }
         }
     }
 
     private void Fall()
     {
-        if (rb.velocity.y < 0)
-        {
-            rb.gravityScale = fallMultiplier;
-        }
-        else
-        {
-            rb.gravityScale = 1.0f;
+        if (!grappling) {
+            if (rb.velocity.y < 0)
+            {
+                rb.gravityScale = fallMultiplier;
+            }
+            else
+            {
+                rb.gravityScale = 1.0f;
+            }
         }
     }
 
@@ -165,4 +182,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void FacingDirection()
+    {
+        if (!sr_Component.flipX)
+        {
+            facingDirection = this.transform.localToWorldMatrix * Vector3.right;
+        }
+        else
+        {
+            facingDirection = this.transform.localToWorldMatrix * Vector3.left;
+        }
+
+        if (grapple_Component.currentGrappleState == Grapple.GrapplingState.Cooldown || grapple_Component.currentGrappleState == Grapple.GrapplingState.Ready)
+        {
+            grappling = false;
+        }
+        else
+        {
+            grappling = true;
+        }
+    }
 }
