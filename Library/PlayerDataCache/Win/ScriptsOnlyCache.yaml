@@ -1,5 +1,11 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor-firstpass.dll:
+    - UnityEditor.CoordinateBrush
+    - UnityEditor.GameObjectBrush
+    - UnityEditor.LineBrush
+    - UnityEditor.TintBrush
+    - UnityEditor.TintBrushSmooth
     Assembly-CSharp-firstpass.dll:
     - Cinemachine.CinemachineBlenderSettings
     - Cinemachine.CinemachineBrain
@@ -13,6 +19,7 @@ ScriptsOnlyBuild:
     - CameraController
     - PlayerController
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
@@ -735,4 +742,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/ArtAssets.unity
-  playerPath: C:/Users/barnwal/Desktop/Grav-Ba.exe
+  playerPath: C:/Users/mattryan/Desktop/Grav-Ba.exe

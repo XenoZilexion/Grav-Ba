@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
 
     private void ControllerInput()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if(--index < 0)
             {
@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
             pc.ChangeGravity(angles[index]);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             if(++index > 3)
             {
