@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
             }
             isRotating = true;
             targetRotation *= Quaternion.AngleAxis(-90, Vector3.forward);
-            pc.ChangeGravity(angles[index]);
+            pc.CurrentRotation = angles[index];
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
             }
             isRotating = true;
             targetRotation *= Quaternion.AngleAxis(90, Vector3.forward);
-            pc.ChangeGravity(angles[index]);
+            pc.CurrentRotation = angles[index];
         }
     }
 

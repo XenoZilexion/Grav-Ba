@@ -1,49 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement Settings")]
     public float moveSpeed = 1.0f;
     public float speedLimit = 5.0f;
     public float smoothingValue = 0.1f;
 
+    [Header("Jump Settings")]
     public float jumpForce = 1.0f;
     public float fallMultiplier = 2.0f;
 
-
-    public bool grounded;
+    [Header("Ground Collision Settings")]
     public LayerMask whatIsGround;
-
     public Transform groundCheck;
     public float groundCheckRadius;
-    
+    public bool grounded;
+
 
     private float horizontalInput;
     private Rigidbody2D rb;
     private Vector3 positionChange;
-
     private Vector3 currentVelocity = Vector3.zero;
-    private enum gravityDirection
+
+
+
+    private class RotationEvent : UnityEvent<int> { } //empty class; just needs to exist
+    private RotationEvent OnWorldRotation = new RotationEvent();
+
+    private int currentRotation = 0;
+    public int CurrentRotation
     {
-        down,
-        right,
-        up,
-        left
-    };
+        get { return currentRotation; }
+        set
+        {
+            if (currentRotation == value) return;
+            currentRotation = value;
+            if (OnWorldRotation != null)
+                OnWorldRotation.Invoke(currentRotation);
+        }
+    }
 
-    private gravityDirection currentGravity = gravityDirection.down;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        OnWorldRotation.AddListener(RotateWorld);
     }
 
     void Update()
     {
         CheckGround();
         Fall();
-
         horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
@@ -51,25 +62,25 @@ public class PlayerController : MonoBehaviour
     {
         ControllerInput();
     }
-
+    
     private void ControllerInput()
     {
 
         if (horizontalInput != 0)
         {
             Vector3 targetVelocity = new Vector2();
-            switch (currentGravity)
+            switch (currentRotation)
             {
-                case gravityDirection.down:
+                case 0:
                     targetVelocity = new Vector2(moveSpeed * horizontalInput, rb.velocity.y);
                     break;
-                case gravityDirection.right:
+                case 90:
                     targetVelocity = new Vector2(rb.velocity.x, moveSpeed * horizontalInput);
                     break;
-                case gravityDirection.up:
+                case 180:
                     targetVelocity = new Vector2(-1 * moveSpeed * horizontalInput, rb.velocity.y);
                     break;
-                case gravityDirection.left:
+                case 270:
                     targetVelocity = new Vector2(rb.velocity.x, -1 * moveSpeed * horizontalInput);
                     break;
             }
@@ -79,26 +90,21 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            switch (currentGravity)
+            switch (currentRotation)
             {
-                case gravityDirection.down:
+                case 0:
                     rb.velocity = new Vector2(0.0f, rb.velocity.y);
                     break;
-                case gravityDirection.right:
+                case 90:
                     rb.velocity = new Vector2(rb.velocity.x, 0.0f);
                     break;
-                case gravityDirection.up:
+                case 180:
                     rb.velocity = new Vector2(0.0f, rb.velocity.y);
                     break;
-                case gravityDirection.left:
+                case 270:
                     rb.velocity = new Vector2(rb.velocity.x, 0.0f);
                     break;
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
-        {
-            Jump();
         }
     }
 
@@ -107,23 +113,29 @@ public class PlayerController : MonoBehaviour
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
 
-    private void Jump()
+    public void Jump()
     {
-        grounded = false;
-        switch (currentGravity)
+        Vector2 force = new Vector2();
+        switch (currentRotation)
         {
-            case gravityDirection.down:
-                rb.AddForce(Vector2.up * jumpForce);
+            case 0:
+                force = Vector2.up * jumpForce;
                 break;
-            case gravityDirection.right:
-                rb.AddForce(Vector2.left * jumpForce);
+            case 90:
+                force = Vector2.left * jumpForce;
                 break;
-            case gravityDirection.up:
-                rb.AddForce(Vector2.down * jumpForce);
+            case 180:
+                force = Vector2.down * jumpForce;
                 break;
-            case gravityDirection.left:
-                rb.AddForce(Vector2.right * jumpForce);
+            case 270:
+                force = Vector2.right * jumpForce;
                 break;
+        }
+
+        if (grounded)
+        {
+            rb.AddForce(force);
+            grounded = false;
         }
     }
 
@@ -138,31 +150,35 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 1.0f;
         }
     }
+    
 
-    public void ChangeGravity(int angle)
+    void RotateWorld(int i)
     {
-        switch (angle)
+        currentRotation = i;
+
+        switch (currentRotation)
         {
             case 0:
                 Physics2D.gravity = new Vector2(0.0f, -9.81f);
-                currentGravity = gravityDirection.down;
                 break;
 
             case 90:
                 Physics2D.gravity = new Vector2(9.81f, 0.0f);
-                currentGravity = gravityDirection.right;
                 break;
 
             case 180:
                 Physics2D.gravity = new Vector2(0.0f, 9.81f);
-                currentGravity = gravityDirection.up;
                 break;
 
             case 270:
                 Physics2D.gravity = new Vector2(-9.81f, 0);
-                currentGravity = gravityDirection.left;
                 break;
         }
+    }
+
+    public void RotatePlayer()
+    {
+
     }
 
 }
