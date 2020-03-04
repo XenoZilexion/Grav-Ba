@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Animator cameraStateMachine;
+    public float rotationSpeed = 1.0f;
+    public GameObject player;
+
+    private Transform playerTransform;
+    private PlayerController pc;
     private int index = 0;
     private List<int> angles = new List<int>() { 0, 90, 180, 270 };
-    // Start is called before the first frame update
+    private bool isRotating = false;
+    private Quaternion targetRotation = Quaternion.AngleAxis(0, Vector3.forward);
+
     void Start()
     {
-            
+        playerTransform = player.GetComponent<Transform>();
+        pc = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         ControllerInput();
+        if (isRotating)
+        {
+            RotatePlayer();
+        }
     }
 
     private void ControllerInput()
@@ -27,8 +38,9 @@ public class CameraController : MonoBehaviour
             {
                 index = 3;
             }
-            cameraStateMachine.SetTrigger("AngleChanged");
-            cameraStateMachine.SetInteger("Angle", angles[index]);
+            isRotating = true;
+            targetRotation *= Quaternion.AngleAxis(-90, Vector3.forward);
+            pc.ChangeGravity(angles[index]);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
@@ -37,8 +49,14 @@ public class CameraController : MonoBehaviour
             {
                 index = 0;
             }
-            cameraStateMachine.SetTrigger("AngleChanged");
-            cameraStateMachine.SetInteger("Angle", angles[index]);
+            isRotating = true;
+            targetRotation *= Quaternion.AngleAxis(90, Vector3.forward);
+            pc.ChangeGravity(angles[index]);
         }
+    }
+
+    private void RotatePlayer()
+    {
+        playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 }
