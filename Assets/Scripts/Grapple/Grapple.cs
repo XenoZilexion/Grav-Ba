@@ -42,6 +42,7 @@ public class Grapple : MonoBehaviour
     public bool holding = false;
     // input button to use for grappling
     public string buttonName;
+    private Animator anim;
     #endregion
     #region setup
     void Start()
@@ -49,6 +50,7 @@ public class Grapple : MonoBehaviour
         // get components
         rb_Component = GetComponent<Rigidbody2D>();
         player_Component = GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
         // starting state is set to cooldown, this was done to prevent shooting when just starting playing, mostly for testing convenience sake.
         grappleRechargeTime = Time.time + 1;
     }
@@ -88,6 +90,7 @@ public class Grapple : MonoBehaviour
     #region shooting
     public void StartGrapple()
     {
+        anim.SetBool("Grapple", true);
         //begin hold, start shooting
         holding = true;
         currentGrappleState = GrapplingState.Shooting;
@@ -194,6 +197,8 @@ public class Grapple : MonoBehaviour
             Destroy(currentRope);
             Destroy(currentHook);
             Destroy(currentBase);
+
+            anim.SetBool("Grapple", false);
         }
     }
 
@@ -209,6 +214,8 @@ public class Grapple : MonoBehaviour
         Destroy(currentRope);
         Destroy(currentHook);
         Destroy(currentBase);
+
+        anim.SetBool("Grapple", false);
     }
 
     #endregion

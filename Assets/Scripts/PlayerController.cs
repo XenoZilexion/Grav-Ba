@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
     private Rigidbody2D rb;
+    private Animator anim;
     private Vector3 positionChange;
 
     private Vector3 currentVelocity = Vector3.zero;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         sr_Component = GetComponent<SpriteRenderer>();
         grapple_Component = GetComponent<Grapple>();
     }
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             if (horizontalInput != 0)
             {
+                anim.SetBool("Run", true);
                 Vector3 targetVelocity = new Vector2();
                 switch (currentGravity)
                 {
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                anim.SetBool("Run", false);
                 switch (currentGravity)
                 {
                     case gravityDirection.down:
@@ -124,6 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!grappling) {
             grounded = false;
+            anim.SetBool("Jump", true);
             switch (currentGravity)
             {
                 case gravityDirection.down:
@@ -145,13 +150,33 @@ public class PlayerController : MonoBehaviour
     private void Fall()
     {
         if (!grappling) {
-            if (rb.velocity.y < 0)
+            float fallVelocity = 0.0f;
+            switch (currentGravity)
+            {
+                case gravityDirection.down:
+                    fallVelocity = rb.velocity.y;
+                    break;
+                case gravityDirection.right:
+                    fallVelocity = -rb.velocity.x;
+                    break;
+                case gravityDirection.up:
+                    fallVelocity = -rb.velocity.y;
+                    break;
+                case gravityDirection.left:
+                    fallVelocity = rb.velocity.x;
+                    break;
+            }
+
+            if (fallVelocity < 0)
             {
                 rb.gravityScale = fallMultiplier;
+                anim.SetBool("Fall", true);
+                anim.SetBool("Jump", false);
             }
             else
             {
                 rb.gravityScale = 1.0f;
+                anim.SetBool("Fall", false);
             }
         }
     }

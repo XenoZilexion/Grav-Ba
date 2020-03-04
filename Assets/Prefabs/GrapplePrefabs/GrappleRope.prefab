@@ -70,13 +70,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -3182077969833370061, guid: ab8ba125be2fbab459fd4d4ca1239edb,
+  m_Sprite: {fileID: -7338765713033929952, guid: 5933e7038e4b00e40b9e3aad8b83cb5d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 1, y: 0.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,4 +96,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grappleOrigin: {fileID: 0}
   hookLocation: {fileID: 0}
-  sr_Component: {fileID: 5430124327926717282}
+  sr_Component: {fileID: 0}
