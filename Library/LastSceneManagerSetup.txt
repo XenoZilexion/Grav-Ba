@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/GrappleArtTest.unity
+- path: Assets/Scenes/LevelDesign_Layout.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
