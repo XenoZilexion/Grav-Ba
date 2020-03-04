@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 8268119628731775668}
   - component: {fileID: 8268119628731775667}
   - component: {fileID: 8268119628731775666}
-  - component: {fileID: 8268119628731775669}
   - component: {fileID: 8268119628731775670}
   - component: {fileID: 8268119628731775671}
+  - component: {fileID: 8268119628731775669}
   m_Layer: 0
   m_Name: George 2.0
   m_TagString: Untagged
@@ -135,29 +135,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8268119628731775669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8268119628731775665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f64b3d4cc4965d4bb123f2e9d89ba63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  speedLimit: 5
-  smoothingValue: 0.1
-  jumpForce: 420
-  fallMultiplier: 1.5
-  grounded: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 8268119627292095200}
-  groundCheckRadius: 0.25
 --- !u!50 &8268119628731775670
 Rigidbody2D:
   serializedVersion: 4
@@ -195,3 +172,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.48
+--- !u!114 &8268119628731775669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268119628731775665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f64b3d4cc4965d4bb123f2e9d89ba63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  speedLimit: 5
+  smoothingValue: 0.1
+  jumpForce: 420
+  fallMultiplier: 1.5
+  grounded: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
+  groundCheck: {fileID: 8268119627292095200}
+  groundCheckRadius: 0.25
