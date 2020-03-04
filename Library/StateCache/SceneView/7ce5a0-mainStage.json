@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< .merge_file_a20380
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":5.246781826019287,"y":-2.357672929763794,"z":-2.544259786605835},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":12.981359481811524,"orthographic":true}
 =======
@@ -6,4 +7,7 @@
 >>>>>>> .merge_file_a08564
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-0.29848289489746096,"y":4.528611660003662,"z":32.0172004699707},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":20.26859474182129,"orthographic":true}
+>>>>>>> ArtAssets
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-0.2749271094799042,"y":2.507632255554199,"z":-6.82835578918457},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":1.2186617851257325,"orthographic":true}
 >>>>>>> ArtAssets
