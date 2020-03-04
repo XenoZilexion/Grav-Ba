@@ -69,6 +69,14 @@ public class PlayerController : MonoBehaviour
         {
             if (horizontalInput != 0)
             {
+                if (horizontalInput > 0)
+                {
+                    sr_Component.flipX = false;
+                }
+                else
+                {
+                    sr_Component.flipX = true;
+                }
                 anim.SetBool("Run", true);
                 Vector3 targetVelocity = new Vector2();
                 switch (currentGravity)
