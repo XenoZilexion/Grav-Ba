@@ -264,9 +264,9 @@ MonoBehaviour:
   grappleCooldown: 0.75
   grappleRechargeTime: 0
   grappleShootDelay: 0.05
-  grappleShootSpeed: 30
+  grappleShootSpeed: 15
   grappleReelDelay: 0.15
-  grappleReelSpeed: 20
+  grappleReelSpeed: 12
   grappleRange: 6
   hookPrefab: {fileID: 6077677492883251746, guid: 5c69329b04e963448b4e56678a2fa2d4,
     type: 3}
