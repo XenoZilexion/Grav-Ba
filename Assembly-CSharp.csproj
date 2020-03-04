@@ -64,6 +64,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CharacterController2D.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Grapple.cs" />
+    <Compile Include="Assets\Scripts\Grapple\GrappleBase.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Hook.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Rope.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Test or Temporary Scripts\GrappleTestPlayer.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/barnwal/Desktop/Grav-Ba/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
