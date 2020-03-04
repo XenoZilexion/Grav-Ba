@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private Rigidbody2D rb;
     private Animator anim;
+    private CameraController cc;
     private Vector3 positionChange;
 
     private Vector3 currentVelocity = Vector3.zero;
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        cc = GetComponent<CameraController>();
         sr_Component = GetComponent<SpriteRenderer>();
         grapple_Component = GetComponent<Grapple>();
     }
@@ -157,7 +159,7 @@ public class PlayerController : MonoBehaviour
 
     private void Fall()
     {
-        if (!grappling) {
+        if (!grappling && !cc.isRotating) {
             float fallVelocity = 0.0f;
             switch (currentGravity)
             {
