@@ -19,11 +19,18 @@ public class Hook : MonoBehaviour
     public Grapple grapple_Component;
     public Rigidbody2D rb_Component;
     // point of instantiation used for distance reference
-    Vector2 origin;
+    Vector3 origin;
     // location for player to lock onto
     public Transform lockPoint;
     public float playerRadiusOffset;
     public Vector3 grappleOriginOffset;
+    //fix parts
+    public SpriteRenderer sr_Component;
+
+    //retracting
+    public bool retracting = false;
+    public float retractCutoff;
+    public float retractSpeed;
     #endregion
     #region setup
     void Start()
@@ -31,22 +38,29 @@ public class Hook : MonoBehaviour
         // get component/set origin
         origin = this.transform.position;
         rb_Component = GetComponent<Rigidbody2D>();
+        sr_Component = GetComponent < SpriteRenderer>();
+        retracting = false;
+        RotationFix();
     }
     #endregion
     #region updates
     void Update()
     {
         RangeCheck();
+        
+        Retract();
     }
     #endregion
     #region functions
     void RangeCheck()
     {
         // check if range has been exceeded
-        if (!hooked && (Mathf.Abs(Vector2.Distance(origin, this.transform.position)) >= grapple_Component.grappleRange))
+        if (!hooked && (Mathf.Abs(Vector2.Distance(origin, this.transform.position)) >= grapple_Component.grappleRange)&&!retracting)
         {
-            // hook break
-            grapple_Component.HookBreak();
+            // retract
+            //Debug.Log("RetractStart");
+            retracting = true;
+            //rb_Component.velocity = (Vector3.Normalize(rb_Component.velocity) * -retractSpeed);
         }
     }
 
@@ -55,7 +69,7 @@ public class Hook : MonoBehaviour
     {
     
         // on collision with wall when not hooked, hook into wall
-        if (collision.gameObject.tag == "Wall" && !hooked)
+        if (collision.gameObject.tag == "Wall" && !hooked && !retracting)
         {
             grappleOriginOffset = grapple_Component.grappleOrigin.transform.position - grapple_Component.transform.position;
 
@@ -76,6 +90,34 @@ public class Hook : MonoBehaviour
             rb_Component.isKinematic = true;
             // hook lock
             grapple_Component.HookLocked();
+        }
+    }
+
+    void RotationFix()
+    {
+        if (grapple_Component.player_Component.sr_Component.flipX)
+        {
+            sr_Component.flipY = true;
+        }
+        else
+        {
+            sr_Component.flipY = false;
+        }
+    }
+
+    void Retract()
+    {
+        if (retracting)
+        {
+            rb_Component.velocity = Vector3.Normalize(origin- this.transform.position) * retractSpeed;
+            if (Vector3.Distance(this.transform.position, origin)<=retractCutoff)
+            {
+                grapple_Component.HookBreak();
+            }
+            if (Vector3.Distance(this.transform.position, origin) <= (retractSpeed*Time.fixedDeltaTime))
+            {
+                grapple_Component.HookBreak();
+            }
         }
     }
     #endregion

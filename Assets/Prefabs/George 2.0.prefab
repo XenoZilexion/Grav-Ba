@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613478064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8268119628731775668}
@@ -220,18 +220,28 @@ MonoBehaviour:
   moveSpeed: 5
   speedLimit: 5
   smoothingValue: 0.1
-  jumpForce: 420
-  fallMultiplier: 1.5
+  jumpForce: 600
+  jumpMultiplier: 2
+  fallMultiplier: 2.5
   grounded: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   groundCheck: {fileID: 8268119627292095200}
-  groundCheckRadius: 0.25
+  groundCheckRadius: 0.3
   facingDirection: {x: 0, y: 0}
   sr_Component: {fileID: 0}
   grapple_Component: {fileID: 0}
   grappling: 0
+  canJump: 0
+  jumping: 0
+  attemptJump: 0
+  coyoteDuration: 0.2
+  bufferDuration: 0.5
+  coyoteEnd: -1
+  bufferEnd: -1
+  jumpCooldown: 0.1
+  jumpEnd: -1
 --- !u!114 &141900127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   player: {fileID: 8268119628731775665}
-  rotationThreshold: 45
+  rotationThreshold: 30
   isRotating: 0
 --- !u!114 &-1002521126375498098
 MonoBehaviour:
@@ -277,5 +287,8 @@ MonoBehaviour:
   basePrefab: {fileID: 6985087784025953215, guid: 2f864ffe1d3472f4fb4216b26340eff6,
     type: 3}
   grappleOrigin: {fileID: 613478065}
+  currentHook: {fileID: 0}
+  currentBase: {fileID: 0}
+  currentRope: {fileID: 0}
   holding: 0
   buttonName: Grapple

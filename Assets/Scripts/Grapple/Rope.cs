@@ -18,12 +18,16 @@ public class Rope : MonoBehaviour
     public Transform hookLocation;
     // sprite renderer component
     public SpriteRenderer sr_Component;
+    // Grapple
+    public Grapple grapple_Component;
     #endregion
     #region setup
     void Start()
     {
         // get sprite renderer
+
         sr_Component = GetComponent<SpriteRenderer>();
+        AdjustRope();
     }
     #endregion
     #region updates
@@ -41,6 +45,15 @@ public class Rope : MonoBehaviour
         sr_Component.size = new Vector2(Vector2.Distance(grappleOrigin.position, hookLocation.position), sr_Component.size.y);
         // sets rotation so that both ends of the rope will touch the origin/hook respectively
         this.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(hookLocation.position.y - grappleOrigin.position.y, hookLocation.position.x - grappleOrigin.position.x) * Mathf.Rad2Deg);
+        // set rope orientation to match player facing direction
+        if (grapple_Component.player_Component.sr_Component.flipX)
+        {
+            sr_Component.flipY = true;
+        }
+        else
+        {
+            sr_Component.flipY = false;
+        }
     }
     #endregion
 }
