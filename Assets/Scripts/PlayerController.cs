@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundCheck;
     public float groundCheckRadius;
-    
+
 
     private float horizontalInput;
     private Rigidbody2D rb;
@@ -33,6 +33,17 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sr_Component;
     public Grapple grapple_Component;
     public bool grappling;
+
+    //input buffering/coyote time
+    public bool canJump = false;
+    public bool jumping = false;
+    public bool attemptJump = false;
+    public float coyoteDuration;
+    public float bufferDuration;
+    public float coyoteEnd = -1;
+    public float bufferEnd = -1;
+    public float jumpCooldown;
+    public float jumpEnd = -1;
 
     private enum gravityDirection
     {
@@ -55,8 +66,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log();
         ControllerInput();
-        //Debug.Log(currentGravity);
+
         CheckGround();
         Fall();
         FacingDirection();
@@ -65,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
     }
 
     private void ControllerInput()
@@ -123,39 +135,141 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            /*
             if (Input.GetKeyDown(KeyCode.C) && grounded)
             {
                 Jump();
             }
+            */
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Debug.Log("Key presed");
+                attemptJump = true;
+                bufferEnd = Time.time + bufferDuration;
+            }
+            
+
+
         }
     }
 
     private void CheckGround()
     {
-        if (!grappling) {
+        //if (!grappling)
+        // {
+
+        if (Time.time >= jumpEnd) {
             grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
         }
-        anim.SetBool("IsGrounded", grounded);
+        else {
+            grounded = false;
+        }
+
+
+        if (grounded == true)
+        {
+
+            canJump = true;
+            jumping = false;
+
+        }
+        else if (grounded == false && coyoteEnd>=Time.time)
+        {
+            canJump = true;
+            jumping = false;
+        }
+        else
+        {
+            canJump = false;
+            //jumping = false;
+        }
+
+        /*
+        if (grounded == true)
+        {
+            
+            canJump = true;
+            jumping = false;
+            coyoteEnd = Time.time + coyoteDuration;
+        }
+        else if (grounded == false && jumping == false && anim.GetBool("IsGrounded") == true)
+        {
+            coyoteEnd = Time.time + coyoteDuration;
+        }
         
+
+
+        if (coyoteEnd >= Time.time && !jumping && canJump)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+        */
+        //Debug.Log("buffer "+bufferEnd);
+        //Debug.Log("time " + Time.time);
+        //Debug.Log("can " + canJump);
+        if (bufferEnd >= Time.time && canJump)
+        {
+            //Debug.Log("Jump Check 1");
+
+            Jump();
+
+            
+        }
+
+        if (bufferEnd < Time.time)
+        {
+            //Debug.Log("input buffer end by time");
+            attemptJump = false;
+        }
+        // }
+        anim.SetBool("IsGrounded", grounded);
+
     }
 
     private void Jump()
     {
-        if (!grappling) {
+
+        if (!grappling)
+        {
+            //Debug.Log("Jump Check 2");
+
+            //Debug.Log("input buffer end by jump");
+            jumping = true;
+            attemptJump = false;
+            canJump = false;
+            bufferEnd = 0;
+            coyoteEnd = 0;
+            jumpEnd = Time.time + jumpCooldown;
+
+
             grounded = false;
             rb.gravityScale = jumpMultiplier;
+            //Debug.Log("another check");
             switch (currentGravity)
             {
                 case gravityDirection.down:
+                    Debug.Log("another another check");
+                    rb.velocity = new Vector2(rb.velocity.x,0);
                     rb.AddForce(Vector2.up * jumpForce);
                     break;
                 case gravityDirection.right:
+                    Debug.Log("another another check");
+                    rb.velocity = new Vector2(0, rb.velocity.y);
                     rb.AddForce(Vector2.left * jumpForce);
                     break;
                 case gravityDirection.up:
+                    Debug.Log("another another check");
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
                     rb.AddForce(Vector2.down * jumpForce);
                     break;
                 case gravityDirection.left:
+                    Debug.Log("another another check");
+                    rb.velocity = new Vector2(0, rb.velocity.y);
                     rb.AddForce(Vector2.right * jumpForce);
                     break;
             }
@@ -164,7 +278,8 @@ public class PlayerController : MonoBehaviour
 
     private void Fall()
     {
-        if (!grappling && !cc.isRotating) {
+        if (!grappling && !cc.isRotating)
+        {
             float fallVelocity = 0.0f;
             switch (currentGravity)
             {

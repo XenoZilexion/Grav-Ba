@@ -233,6 +233,15 @@ MonoBehaviour:
   sr_Component: {fileID: 0}
   grapple_Component: {fileID: 0}
   grappling: 0
+  canJump: 0
+  jumping: 0
+  attemptJump: 0
+  coyoteDuration: 0.2
+  bufferDuration: 0.5
+  coyoteEnd: -1
+  bufferEnd: -1
+  jumpCooldown: 0.1
+  jumpEnd: -1
 --- !u!114 &141900127
 MonoBehaviour:
   m_ObjectHideFlags: 0
