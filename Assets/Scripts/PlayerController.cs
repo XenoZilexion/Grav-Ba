@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         {
             if (horizontalInput != 0)
             {
+                anim.SetBool("Run", true);
                 if (horizontalInput > 0)
                 {
                     sr_Component.flipX = false;
@@ -79,7 +80,6 @@ public class PlayerController : MonoBehaviour
                 {
                     sr_Component.flipX = true;
                 }
-                anim.SetBool("Run", true);
                 Vector3 targetVelocity = new Vector2();
                 switch (currentGravity)
                 {
@@ -132,13 +132,14 @@ public class PlayerController : MonoBehaviour
         if (!grappling) {
             grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
         }
+        anim.SetBool("IsGrounded", grounded);
+        
     }
 
     private void Jump()
     {
         if (!grappling) {
             grounded = false;
-            anim.SetBool("Jump", true);
             switch (currentGravity)
             {
                 case gravityDirection.down:
@@ -180,13 +181,10 @@ public class PlayerController : MonoBehaviour
             if (fallVelocity < 0)
             {
                 rb.gravityScale = fallMultiplier;
-                anim.SetBool("Fall", true);
-                anim.SetBool("Jump", false);
             }
             else
             {
                 rb.gravityScale = 1.0f;
-                anim.SetBool("Fall", false);
             }
         }
     }

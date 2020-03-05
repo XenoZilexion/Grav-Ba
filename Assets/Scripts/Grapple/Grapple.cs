@@ -197,7 +197,6 @@ public class Grapple : MonoBehaviour
             Destroy(currentRope);
             Destroy(currentHook);
             Destroy(currentBase);
-
             anim.SetBool("Grapple", false);
         }
     }
@@ -214,8 +213,8 @@ public class Grapple : MonoBehaviour
         Destroy(currentRope);
         Destroy(currentHook);
         Destroy(currentBase);
-
         anim.SetBool("Grapple", false);
+
     }
 
     #endregion

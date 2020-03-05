@@ -187,7 +187,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: abbd8a542de78e047918c9240547fbd6, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &8268119628731775671
 CircleCollider2D:
@@ -246,6 +246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   player: {fileID: 8268119628731775665}
+  rotationThreshold: 1
+  isRotating: 0
 --- !u!114 &-1002521126375498098
 MonoBehaviour:
   m_ObjectHideFlags: 0
