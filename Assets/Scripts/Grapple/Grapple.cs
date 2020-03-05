@@ -134,6 +134,7 @@ public class Grapple : MonoBehaviour
         GameObject newRope = Instantiate(ropePrefab, grappleOrigin.position, Quaternion.identity);
         newRope.GetComponent<Rope>().grappleOrigin = currentBase.transform;
         newRope.GetComponent<Rope>().hookLocation = currentHook.transform;
+        newRope.GetComponent<Rope>().grapple_Component = this;
         currentRope = newRope;
     }
     #endregion
