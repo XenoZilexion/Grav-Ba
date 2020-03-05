@@ -1,11 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor-firstpass.dll:
-    - UnityEditor.CoordinateBrush
-    - UnityEditor.GameObjectBrush
-    - UnityEditor.LineBrush
-    - UnityEditor.TintBrush
-    - UnityEditor.TintBrushSmooth
     Assembly-CSharp-firstpass.dll:
     - Cinemachine.CinemachineBlenderSettings
     - Cinemachine.CinemachineBrain
@@ -17,9 +11,14 @@ ScriptsOnlyBuild:
     - UnityEngine.RuleTile
     Assembly-CSharp.dll:
     - CameraController
+    - Grapple
+    - GrappleBase
+    - Hook
     - PlayerController
+    - Rope
+    Unity.2D.Sprite.Editor.dll:
+    - UnityEditor.U2D.Sprites.SpriteEditorWindow
     Unity.2D.Tilemap.Editor.dll:
-    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
@@ -35,7 +34,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
   sceneClasses:
-    Assets/Scenes/ArtAssets.unity:
+    Assets/Scenes/GrappleArtTest.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -52,6 +51,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 58
       Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
     - Class: 62
       Script: {instanceID: 0}
     - Class: 66
@@ -67,25 +68,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 9650}
+    - Class: 114
       Script: {instanceID: 9668}
     - Class: 114
-      Script: {instanceID: 9764}
+      Script: {instanceID: 9682}
     - Class: 114
-      Script: {instanceID: 10054}
+      Script: {instanceID: 9782}
     - Class: 114
-      Script: {instanceID: 10308}
+      Script: {instanceID: 10074}
     - Class: 114
-      Script: {instanceID: 10358}
+      Script: {instanceID: 10330}
     - Class: 114
-      Script: {instanceID: 10634}
+      Script: {instanceID: 10382}
     - Class: 114
-      Script: {instanceID: 10926}
+      Script: {instanceID: 10662}
     - Class: 114
-      Script: {instanceID: 11070}
+      Script: {instanceID: 10958}
     - Class: 114
-      Script: {instanceID: 11152}
+      Script: {instanceID: 11104}
     - Class: 114
-      Script: {instanceID: 11648}
+      Script: {instanceID: 11188}
+    - Class: 114
+      Script: {instanceID: 11684}
+    - Class: 114
+      Script: {instanceID: 11714}
+    - Class: 114
+      Script: {instanceID: 11772}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -105,10 +114,28 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
+      Hash: f412f7365624cc6dabe1ac387510cfb7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Rope
+  - hash:
+      serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: 1dd7f8c261a44cdf50520b02e72049d9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Hook
+  - hash:
+      serializedVersion: 2
+      Hash: 459b50185a167c1d210a783633c72823
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Movement
   - hash:
       serializedVersion: 2
       Hash: 2c4a64a2064bbbaafe6894ab5cc7a04a
@@ -123,10 +150,22 @@ ScriptsOnlyBuild:
     className: TMP_SelectionCaret
   - hash:
       serializedVersion: 2
+      Hash: e57d3f7cbac660e11b47914a8e5bc850
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PatrolAI
+  - hash:
+      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Projectile
   - hash:
       serializedVersion: 2
       Hash: bf530eb47e6a86dcee1d42e40c3b7ac8
@@ -147,7 +186,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 5314341a1dedc5b71dc363fcb7a24933
+      Hash: e3f557fd25e52baf6a5894ec8de03706
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraController
@@ -205,6 +244,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: 689c5b3266c6f85b2a451c6cf1317e29
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StandAndEngage
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -303,7 +348,13 @@ ScriptsOnlyBuild:
     className: NoiseSettings
   - hash:
       serializedVersion: 2
-      Hash: d0de098357d8c30e08f621efadab43bf
+      Hash: b1fb426e4b29265734b424cb8c9203e2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIController
+  - hash:
+      serializedVersion: 2
+      Hash: 029383bfb34af070aeb51e245d0e7b74
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -313,6 +364,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: EventSystem
+  - hash:
+      serializedVersion: 2
+      Hash: 0e15370d36bf557f74fd6e8a55e2e84a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GrappleTestPlayer
   - hash:
       serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
@@ -357,6 +414,12 @@ ScriptsOnlyBuild:
     className: CinemachinePOV
   - hash:
       serializedVersion: 2
+      Hash: 56e9023921de726f0f4253c8b776cbcf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlatformAI
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -373,6 +436,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KillPlayer
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -423,6 +492,12 @@ ScriptsOnlyBuild:
     className: CinemachinePath
   - hash:
       serializedVersion: 2
+      Hash: 29bec0b7a6915ac2a881e4c2ec08b8ba
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Shooting
+  - hash:
+      serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -459,6 +534,12 @@ ScriptsOnlyBuild:
     className: CinemachineTransposer
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyHealth
+  - hash:
+      serializedVersion: 2
       Hash: ff88ee9a3f9291bdaaf1cebc9d2c430b
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: Cinemachine
@@ -475,6 +556,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: Cinemachine
     className: CinemachineBlendListCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenuController
   - hash:
       serializedVersion: 2
       Hash: 12e64d607873da15ad3f833620350d51
@@ -553,6 +640,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: TimelineAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 955b56d6c897ae0d0f6ac77dfc81e2c6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KillDetection
   - hash:
       serializedVersion: 2
       Hash: 1cc71a08bece2af5ba7ae4660fb393f1
@@ -675,6 +768,12 @@ ScriptsOnlyBuild:
     className: CinemachineBrain
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Collectable
+  - hash:
+      serializedVersion: 2
       Hash: 7090bc1e5ccaec2a9d0d1335ed8cee99
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner
@@ -697,6 +796,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: StandaloneInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: ff624b4c0a9a00d725bd9aed9b811248
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GrappleBase
   - hash:
       serializedVersion: 2
       Hash: 2c38da0504d94a36e68bd2308d606900
@@ -735,11 +840,17 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
+      Hash: 31f3f54545a6686d1ffa9240b4faaf90
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Grapple
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
   platform: 5
   scenePathNames:
-  - Assets/Scenes/ArtAssets.unity
-  playerPath: C:/Users/mattryan/Desktop/Grav-Ba.exe
+  - Assets/Scenes/GrappleArtTest.unity
+  playerPath: C:/Users/barnwal/Desktop/3/Grav-Ba.exe
