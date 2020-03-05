@@ -42,9 +42,11 @@ public class CameraController : MonoBehaviour
             {
                 index = 3;
             }
-
-            rb.gravityScale = 0;
-            rb.velocity = Vector2.zero;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 0;
+                rb.velocity = Vector2.zero;
+            }
             isRotating = true;
             rotatable = true;
             targetRotation *= Quaternion.AngleAxis(-90, Vector3.forward);
@@ -57,9 +59,11 @@ public class CameraController : MonoBehaviour
             {
                 index = 0;
             }
-
-            rb.gravityScale = 0;
-            rb.velocity = Vector2.zero;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 0;
+                rb.velocity = Vector2.zero;
+            }
             isRotating = true;
             rotatable = true;
             targetRotation *= Quaternion.AngleAxis(90, Vector3.forward);
@@ -72,7 +76,10 @@ public class CameraController : MonoBehaviour
         playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         if (Mathf.Abs(playerTransform.rotation.eulerAngles.z - targetRotation.eulerAngles.z) <= rotationThreshold && isRotating)
         {
-            rb.gravityScale = 1;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 1;
+            }
             isRotating = false;
         }
 
