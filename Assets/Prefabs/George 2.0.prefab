@@ -236,7 +236,7 @@ MonoBehaviour:
   canJump: 0
   jumping: 0
   attemptJump: 0
-  coyoteDuration: 0.2
+  coyoteDuration: 0.3
   bufferDuration: 0.5
   coyoteEnd: -1
   bufferEnd: -1
