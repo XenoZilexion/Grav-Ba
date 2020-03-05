@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
 
-            Debug.Log(fallVelocity);
+            //Debug.Log(fallVelocity);
             if (fallVelocity < -0.0002f)
             {
                 rb.gravityScale = fallMultiplier;
