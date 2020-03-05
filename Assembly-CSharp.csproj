@@ -63,10 +63,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\ControllerMapping.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\CharacterController2D.cs" />
+    <Compile Include="Assets\Scripts\Collectable.cs" />
+    <Compile Include="Assets\Scripts\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Grapple.cs" />
+    <Compile Include="Assets\Scripts\Grapple\GrappleBase.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Hook.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Rope.cs" />
+    <Compile Include="Assets\Scripts\Grapple\Test or Temporary Scripts\GrappleTestPlayer.cs" />
+    <Compile Include="Assets\Scripts\KillDetection.cs" />
+    <Compile Include="Assets\Scripts\KillPlayer.cs" />
+    <Compile Include="Assets\Scripts\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\PatrolAI.cs" />
+    <Compile Include="Assets\Scripts\PlatformAI.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Shooting.cs" />
+    <Compile Include="Assets\Scripts\StandAndEngage.cs" />
+    <Compile Include="Assets\Scripts\UIController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/barnwal/Desktop/Grav-Ba/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

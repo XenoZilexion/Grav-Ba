@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &613478064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 613478065}
+  m_Layer: 0
+  m_Name: GrappleOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &613478065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613478064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8268119628731775668}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8268119627292095231
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8268119627292095200}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Ground Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +74,8 @@ GameObject:
   - component: {fileID: 8268119628731775670}
   - component: {fileID: 8268119628731775671}
   - component: {fileID: 8268119628731775669}
+  - component: {fileID: 141900127}
+  - component: {fileID: -1002521126375498098}
   m_Layer: 0
   m_Name: George 2.0
   m_TagString: Untagged
@@ -63,6 +95,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8268119627292095200}
+  - {fileID: 613478065}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -151,10 +184,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: abbd8a542de78e047918c9240547fbd6, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &8268119628731775671
 CircleCollider2D:
@@ -165,7 +198,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8268119628731775665}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: abbd8a542de78e047918c9240547fbd6, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -195,3 +228,54 @@ MonoBehaviour:
     m_Bits: 256
   groundCheck: {fileID: 8268119627292095200}
   groundCheckRadius: 0.25
+  facingDirection: {x: 0, y: 0}
+  sr_Component: {fileID: 0}
+  grapple_Component: {fileID: 0}
+  grappling: 0
+--- !u!114 &141900127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268119628731775665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d76c411c0080304ab379cd8ac40ebc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  player: {fileID: 8268119628731775665}
+  rotationThreshold: 1
+  isRotating: 0
+--- !u!114 &-1002521126375498098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268119628731775665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5d41dfbbbd276429149207d1acc1f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGrappleState: 3
+  rb_Component: {fileID: 0}
+  player_Component: {fileID: 0}
+  grappleCooldown: 0.1
+  grappleRechargeTime: 0
+  grappleShootDelay: 0.05
+  grappleShootSpeed: 15
+  grappleReelDelay: 0.15
+  grappleReelSpeed: 12
+  grappleRange: 5.5
+  hookPrefab: {fileID: 6077677492883251746, guid: 5c69329b04e963448b4e56678a2fa2d4,
+    type: 3}
+  ropePrefab: {fileID: 5430124327926717280, guid: c47b5715131abd343bbc1e6759ef4647,
+    type: 3}
+  basePrefab: {fileID: 6985087784025953215, guid: 2f864ffe1d3472f4fb4216b26340eff6,
+    type: 3}
+  grappleOrigin: {fileID: 613478065}
+  holding: 0
+  buttonName: Grapple

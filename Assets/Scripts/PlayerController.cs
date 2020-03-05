@@ -1,60 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
     public float moveSpeed = 1.0f;
     public float speedLimit = 5.0f;
     public float smoothingValue = 0.1f;
 
-    [Header("Jump Settings")]
     public float jumpForce = 1.0f;
     public float fallMultiplier = 2.0f;
 
-    [Header("Ground Collision Settings")]
+
+    public bool grounded;
     public LayerMask whatIsGround;
+
     public Transform groundCheck;
     public float groundCheckRadius;
-    public bool grounded;
-
+    
 
     private float horizontalInput;
     private Rigidbody2D rb;
+    private Animator anim;
+    private CameraController cc;
     private Vector3 positionChange;
+
     private Vector3 currentVelocity = Vector3.zero;
 
+    // grapple implementation
+    public Vector2 facingDirection;
+    public SpriteRenderer sr_Component;
+    public Grapple grapple_Component;
+    public bool grappling;
 
-
-    private class RotationEvent : UnityEvent<int> { } //empty class; just needs to exist
-    private RotationEvent OnWorldRotation = new RotationEvent();
-
-    private int currentRotation = 0;
-    public int CurrentRotation
+    private enum gravityDirection
     {
-        get { return currentRotation; }
-        set
-        {
-            if (currentRotation == value) return;
-            currentRotation = value;
-            if (OnWorldRotation != null)
-                OnWorldRotation.Invoke(currentRotation);
-        }
-    }
+        down,
+        right,
+        up,
+        left
+    };
 
+    private gravityDirection currentGravity = gravityDirection.down;
 
-    private void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        OnWorldRotation.AddListener(RotateWorld);
+        anim = GetComponent<Animator>();
+        cc = GetComponent<CameraController>();
+        sr_Component = GetComponent<SpriteRenderer>();
+        grapple_Component = GetComponent<Grapple>();
     }
 
     void Update()
     {
         CheckGround();
         Fall();
+        FacingDirection();
         horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
@@ -62,123 +64,175 @@ public class PlayerController : MonoBehaviour
     {
         ControllerInput();
     }
-    
+
     private void ControllerInput()
     {
-
-        if (horizontalInput != 0)
+        if (!grappling)
         {
-            Vector3 targetVelocity = new Vector2();
-            switch (currentRotation)
+            if (horizontalInput != 0)
             {
-                case 0:
-                    targetVelocity = new Vector2(moveSpeed * horizontalInput, rb.velocity.y);
-                    break;
-                case 90:
-                    targetVelocity = new Vector2(rb.velocity.x, moveSpeed * horizontalInput);
-                    break;
-                case 180:
-                    targetVelocity = new Vector2(-1 * moveSpeed * horizontalInput, rb.velocity.y);
-                    break;
-                case 270:
-                    targetVelocity = new Vector2(rb.velocity.x, -1 * moveSpeed * horizontalInput);
-                    break;
+                anim.SetBool("Run", true);
+                if (horizontalInput > 0)
+                {
+                    sr_Component.flipX = false;
+                }
+                else
+                {
+                    sr_Component.flipX = true;
+                }
+                Vector3 targetVelocity = new Vector2();
+                switch (currentGravity)
+                {
+                    case gravityDirection.down:
+                        targetVelocity = new Vector2(moveSpeed * horizontalInput, rb.velocity.y);
+                        break;
+                    case gravityDirection.right:
+                        targetVelocity = new Vector2(rb.velocity.x, moveSpeed * horizontalInput);
+                        break;
+                    case gravityDirection.up:
+                        targetVelocity = new Vector2(-1 * moveSpeed * horizontalInput, rb.velocity.y);
+                        break;
+                    case gravityDirection.left:
+                        targetVelocity = new Vector2(rb.velocity.x, -1 * moveSpeed * horizontalInput);
+                        break;
+                }
+
+
+                rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, smoothingValue);
+            }
+            else
+            {
+                anim.SetBool("Run", false);
+                switch (currentGravity)
+                {
+                    case gravityDirection.down:
+                        rb.velocity = new Vector2(0.0f, rb.velocity.y);
+                        break;
+                    case gravityDirection.right:
+                        rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+                        break;
+                    case gravityDirection.up:
+                        rb.velocity = new Vector2(0.0f, rb.velocity.y);
+                        break;
+                    case gravityDirection.left:
+                        rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+                        break;
+                }
             }
 
-            
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, smoothingValue);
-        }
-        else
-        {
-            switch (currentRotation)
+            if (Input.GetKeyDown(KeyCode.C) && grounded)
             {
-                case 0:
-                    rb.velocity = new Vector2(0.0f, rb.velocity.y);
-                    break;
-                case 90:
-                    rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-                    break;
-                case 180:
-                    rb.velocity = new Vector2(0.0f, rb.velocity.y);
-                    break;
-                case 270:
-                    rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-                    break;
+                Jump();
             }
         }
     }
 
     private void CheckGround()
     {
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        if (!grappling) {
+            grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        }
+        anim.SetBool("IsGrounded", grounded);
+        
     }
 
-    public void Jump()
+    private void Jump()
     {
-        Vector2 force = new Vector2();
-        switch (currentRotation)
-        {
-            case 0:
-                force = Vector2.up * jumpForce;
-                break;
-            case 90:
-                force = Vector2.left * jumpForce;
-                break;
-            case 180:
-                force = Vector2.down * jumpForce;
-                break;
-            case 270:
-                force = Vector2.right * jumpForce;
-                break;
-        }
-
-        if (grounded)
-        {
-            rb.AddForce(force);
+        if (!grappling) {
             grounded = false;
+            switch (currentGravity)
+            {
+                case gravityDirection.down:
+                    rb.AddForce(Vector2.up * jumpForce);
+                    break;
+                case gravityDirection.right:
+                    rb.AddForce(Vector2.left * jumpForce);
+                    break;
+                case gravityDirection.up:
+                    rb.AddForce(Vector2.down * jumpForce);
+                    break;
+                case gravityDirection.left:
+                    rb.AddForce(Vector2.right * jumpForce);
+                    break;
+            }
         }
     }
 
     private void Fall()
     {
-        if (rb.velocity.y < 0)
-        {
-            rb.gravityScale = fallMultiplier;
-        }
-        else
-        {
-            rb.gravityScale = 1.0f;
+        if (!grappling && !cc.isRotating) {
+            float fallVelocity = 0.0f;
+            switch (currentGravity)
+            {
+                case gravityDirection.down:
+                    fallVelocity = rb.velocity.y;
+                    break;
+                case gravityDirection.right:
+                    fallVelocity = -rb.velocity.x;
+                    break;
+                case gravityDirection.up:
+                    fallVelocity = -rb.velocity.y;
+                    break;
+                case gravityDirection.left:
+                    fallVelocity = rb.velocity.x;
+                    break;
+            }
+
+            if (fallVelocity < 0)
+            {
+                rb.gravityScale = fallMultiplier;
+            }
+            else
+            {
+                rb.gravityScale = 1.0f;
+            }
         }
     }
-    
 
-    void RotateWorld(int i)
+    public void ChangeGravity(int angle)
     {
-        currentRotation = i;
-
-        switch (currentRotation)
+        switch (angle)
         {
             case 0:
                 Physics2D.gravity = new Vector2(0.0f, -9.81f);
+                currentGravity = gravityDirection.down;
                 break;
 
             case 90:
                 Physics2D.gravity = new Vector2(9.81f, 0.0f);
+                currentGravity = gravityDirection.right;
                 break;
 
             case 180:
                 Physics2D.gravity = new Vector2(0.0f, 9.81f);
+                currentGravity = gravityDirection.up;
                 break;
 
             case 270:
                 Physics2D.gravity = new Vector2(-9.81f, 0);
+                currentGravity = gravityDirection.left;
                 break;
         }
     }
 
-    public void RotatePlayer()
+    void FacingDirection()
     {
+        if (!sr_Component.flipX)
+        {
+            facingDirection = this.transform.localToWorldMatrix * Vector3.right;
+        }
+        else
+        {
+            facingDirection = this.transform.localToWorldMatrix * Vector3.left;
+        }
 
+        if (grapple_Component.currentGrappleState == Grapple.GrapplingState.Cooldown || grapple_Component.currentGrappleState == Grapple.GrapplingState.Ready)
+        {
+            grappling = false;
+        }
+        else
+        {
+            grappling = true;
+        }
     }
-
 }
