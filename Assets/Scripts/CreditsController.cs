@@ -19,7 +19,7 @@ public class CreditsController : MonoBehaviour
     {
         if (Input.GetKeyDown("3"))
         {
-            credits += 1;               
+            credits += 0.25f;               
         }
         if (credits <= 0.99)
         {
