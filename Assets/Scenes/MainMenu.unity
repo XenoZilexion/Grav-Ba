@@ -52802,6 +52802,11 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3613751756121833986, guid: 9b24a71359e48e74e98595e2bfe78ab4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b24a71359e48e74e98595e2bfe78ab4, type: 3}
 --- !u!1 &2049056234
