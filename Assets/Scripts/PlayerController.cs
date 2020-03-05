@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
             canJump = true;
             jumping = false;
+            coyoteEnd = Time.time + coyoteDuration;
 
         }
         else if (grounded == false && coyoteEnd>=Time.time)
@@ -253,22 +254,22 @@ public class PlayerController : MonoBehaviour
             switch (currentGravity)
             {
                 case gravityDirection.down:
-                    Debug.Log("another another check");
+                    //Debug.Log("another another check");
                     rb.velocity = new Vector2(rb.velocity.x,0);
                     rb.AddForce(Vector2.up * jumpForce);
                     break;
                 case gravityDirection.right:
-                    Debug.Log("another another check");
+                    //Debug.Log("another another check");
                     rb.velocity = new Vector2(0, rb.velocity.y);
                     rb.AddForce(Vector2.left * jumpForce);
                     break;
                 case gravityDirection.up:
-                    Debug.Log("another another check");
+                    //Debug.Log("another another check");
                     rb.velocity = new Vector2(rb.velocity.x, 0);
                     rb.AddForce(Vector2.down * jumpForce);
                     break;
                 case gravityDirection.left:
-                    Debug.Log("another another check");
+                    //Debug.Log("another another check");
                     rb.velocity = new Vector2(0, rb.velocity.y);
                     rb.AddForce(Vector2.right * jumpForce);
                     break;
