@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        ControllerInput();
         //Debug.Log(currentGravity);
         CheckGround();
         Fall();
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ControllerInput();
+        
     }
 
     private void ControllerInput()
