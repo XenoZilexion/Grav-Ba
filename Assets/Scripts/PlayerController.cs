@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(currentGravity);
         CheckGround();
         Fall();
         FacingDirection();

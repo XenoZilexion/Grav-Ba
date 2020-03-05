@@ -74,7 +74,8 @@ public class CameraController : MonoBehaviour
     private void RotatePlayer()
     {
         playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        if (Mathf.Abs(playerTransform.rotation.eulerAngles.z - targetRotation.eulerAngles.z) <= rotationThreshold && isRotating)
+
+        if (Mathf.Abs(Quaternion.Angle(playerTransform.rotation, targetRotation)) <= rotationThreshold && isRotating)
         {
             if (!pc.grappling)
             {
@@ -83,9 +84,25 @@ public class CameraController : MonoBehaviour
             isRotating = false;
         }
 
+        /*
+        if (Mathf.Abs(playerTransform.rotation.eulerAngles.z - targetRotation.eulerAngles.z) <= rotationThreshold && isRotating)
+        {
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 1;
+            }
+            isRotating = false;
+        }
+        */
+
         if (playerTransform.rotation == targetRotation)
         {
             rotatable = false;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 1;
+            }
+            isRotating = false;
         }
     }
 }

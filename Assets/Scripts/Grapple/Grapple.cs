@@ -109,7 +109,7 @@ public class Grapple : MonoBehaviour
     }
     public void ShootGrapple()
     {
-        Debug.Log("grapple start check");
+        //Debug.Log("grapple start check");
 
         // freeze player movement
         //rb_Component.isKinematic = true;
@@ -176,7 +176,7 @@ public class Grapple : MonoBehaviour
             // if going to overshoot the lockpoint, lock onto the lockpoint
             if ((Vector2.Distance(this.transform.position, currentHook.GetComponent<Hook>().lockPoint.transform.position)) <= (grappleReelSpeed * Time.fixedDeltaTime))
             {
-                Debug.Log("lockpoint check");
+               // Debug.Log("lockpoint check");
                 rb_Component.velocity = Vector2.zero;
                 rb_Component.position = currentHook.GetComponent<Hook>().lockPoint.transform.position;
                 currentGrappleState = GrapplingState.Holding;
@@ -249,7 +249,7 @@ public class Grapple : MonoBehaviour
     {
         if (currentGrappleState == GrapplingState.Reeling)
         {
-            Debug.Log("collision check");
+            //Debug.Log("collision check");
             rb_Component.velocity = Vector2.zero;
             currentGrappleState = GrapplingState.Holding;
         }
@@ -257,11 +257,11 @@ public class Grapple : MonoBehaviour
     
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("currently colliding");
+        //Debug.Log("currently colliding");
         
         if (currentGrappleState == GrapplingState.Reeling&&rb_Component.velocity.magnitude<=.1f && holding==false&&Time.time>=reelStartTime)
         {
-            Debug.Log("collision check");
+            //Debug.Log("collision check");
             rb_Component.velocity = Vector2.zero;
             currentGrappleState = GrapplingState.Holding;
         }

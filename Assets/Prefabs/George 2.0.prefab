@@ -246,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   player: {fileID: 8268119628731775665}
-  rotationThreshold: 1
+  rotationThreshold: 45
   isRotating: 0
 --- !u!114 &-1002521126375498098
 MonoBehaviour:
