@@ -25,7 +25,9 @@ public class Rope : MonoBehaviour
     void Start()
     {
         // get sprite renderer
+
         sr_Component = GetComponent<SpriteRenderer>();
+        AdjustRope();
     }
     #endregion
     #region updates

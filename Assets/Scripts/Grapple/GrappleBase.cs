@@ -14,6 +14,13 @@ public class GrappleBase : MonoBehaviour
     #region variables
     // reference to parent
     public PlayerController player_Component;
+    SpriteRenderer sr_Component;
+    #endregion
+    #region setup
+    private void Start()
+    {
+        sr_Component = GetComponentInChildren<SpriteRenderer>();
+    }
     #endregion
     #region updates
     void Update()
@@ -26,7 +33,18 @@ public class GrappleBase : MonoBehaviour
     void SetBaseRotation()
     {
         // set the grapple base to face the direction the player faces.
-        this.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(player_Component.facingDirection.y - 0, player_Component.facingDirection.x - 0) * Mathf.Rad2Deg);
+        // this.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(player_Component.facingDirection.y - 0, player_Component.facingDirection.x - 0) * Mathf.Rad2Deg);
+        // sets rotation so that both ends of the rope will touch the origin/hook respectively
+        this.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(player_Component.grapple_Component.currentHook.transform.position.y - this.transform.position.y, player_Component.grapple_Component.currentHook.transform.position.x - this.transform.position.x) * Mathf.Rad2Deg);
+        // set rope orientation to match player facing direction
+        if (player_Component.sr_Component.flipX)
+        {
+            sr_Component.flipY = true;
+        }
+        else
+        {
+            sr_Component.flipY = false;
+        }
     }
     #endregion
 

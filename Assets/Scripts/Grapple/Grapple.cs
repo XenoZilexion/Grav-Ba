@@ -35,9 +35,9 @@ public class Grapple : MonoBehaviour
     // locatio grappling instantiates from
     public Transform grappleOrigin;
     // current hook
-    GameObject currentHook;
-    GameObject currentBase;
-    GameObject currentRope;
+    public GameObject currentHook;
+    public GameObject currentBase;
+    public GameObject currentRope;
     // bool recording whether the player is holding the input
     public bool holding = false;
     // input button to use for grappling

@@ -274,7 +274,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -9636,30 +9636,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 141900127, guid: c42b63c9a2ada9a40bbc9724e568c6f8, type: 3}
-      propertyPath: rotationThreshold
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268119628731775669, guid: c42b63c9a2ada9a40bbc9724e568c6f8,
-        type: 3}
-      propertyPath: groundCheckRadius
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268119628731775669, guid: c42b63c9a2ada9a40bbc9724e568c6f8,
-        type: 3}
-      propertyPath: jumpForce
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268119628731775669, guid: c42b63c9a2ada9a40bbc9724e568c6f8,
-        type: 3}
-      propertyPath: fallMultiplier
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268119628731775669, guid: c42b63c9a2ada9a40bbc9724e568c6f8,
-        type: 3}
-      propertyPath: jumpMultiplier
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c42b63c9a2ada9a40bbc9724e568c6f8, type: 3}
