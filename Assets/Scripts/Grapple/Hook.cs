@@ -24,6 +24,8 @@ public class Hook : MonoBehaviour
     public Transform lockPoint;
     public float playerRadiusOffset;
     public Vector3 grappleOriginOffset;
+    //fix parts
+    public SpriteRenderer sr_Component;
     #endregion
     #region setup
     void Start()
@@ -31,12 +33,14 @@ public class Hook : MonoBehaviour
         // get component/set origin
         origin = this.transform.position;
         rb_Component = GetComponent<Rigidbody2D>();
+        sr_Component = GetComponent < SpriteRenderer>();
     }
     #endregion
     #region updates
     void Update()
     {
         RangeCheck();
+        RotationFix();
     }
     #endregion
     #region functions
@@ -76,6 +80,18 @@ public class Hook : MonoBehaviour
             rb_Component.isKinematic = true;
             // hook lock
             grapple_Component.HookLocked();
+        }
+    }
+
+    void RotationFix()
+    {
+        if (grapple_Component.player_Component.sr_Component.flipX)
+        {
+            sr_Component.flipY = true;
+        }
+        else
+        {
+            sr_Component.flipY = false;
         }
     }
     #endregion

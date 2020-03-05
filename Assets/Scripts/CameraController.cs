@@ -36,30 +36,34 @@ public class CameraController : MonoBehaviour
 
     private void ControllerInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&isRotating == false)
         {
             if(--index < 0)
             {
                 index = 3;
             }
-
-            rb.gravityScale = 0;
-            rb.velocity = Vector2.zero;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 0;
+                rb.velocity = Vector2.zero;
+            }
             isRotating = true;
             rotatable = true;
             targetRotation *= Quaternion.AngleAxis(-90, Vector3.forward);
             pc.ChangeGravity(angles[index]);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && isRotating == false)
         {
             if(++index > 3)
             {
                 index = 0;
             }
-
-            rb.gravityScale = 0;
-            rb.velocity = Vector2.zero;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 0;
+                rb.velocity = Vector2.zero;
+            }
             isRotating = true;
             rotatable = true;
             targetRotation *= Quaternion.AngleAxis(90, Vector3.forward);
@@ -70,15 +74,35 @@ public class CameraController : MonoBehaviour
     private void RotatePlayer()
     {
         playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        if (Mathf.Abs(playerTransform.rotation.eulerAngles.z - targetRotation.eulerAngles.z) <= rotationThreshold && isRotating)
+
+        if (Mathf.Abs(Quaternion.Angle(playerTransform.rotation, targetRotation)) <= rotationThreshold && isRotating)
         {
-            rb.gravityScale = 1;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 1;
+            }
             isRotating = false;
         }
+
+        /*
+        if (Mathf.Abs(playerTransform.rotation.eulerAngles.z - targetRotation.eulerAngles.z) <= rotationThreshold && isRotating)
+        {
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 1;
+            }
+            isRotating = false;
+        }
+        */
 
         if (playerTransform.rotation == targetRotation)
         {
             rotatable = false;
+            if (!pc.grappling)
+            {
+                rb.gravityScale = 1;
+            }
+            isRotating = false;
         }
     }
 }

@@ -43,6 +43,9 @@ public class Grapple : MonoBehaviour
     // input button to use for grappling
     public string buttonName;
     private Animator anim;
+
+    private float reelStartTime;
+    private float reelStartLeniency = .1f;
     #endregion
     #region setup
     void Start()
@@ -106,6 +109,8 @@ public class Grapple : MonoBehaviour
     }
     public void ShootGrapple()
     {
+        //Debug.Log("grapple start check");
+
         // freeze player movement
         //rb_Component.isKinematic = true;
 
@@ -129,6 +134,7 @@ public class Grapple : MonoBehaviour
         GameObject newRope = Instantiate(ropePrefab, grappleOrigin.position, Quaternion.identity);
         newRope.GetComponent<Rope>().grappleOrigin = currentBase.transform;
         newRope.GetComponent<Rope>().hookLocation = currentHook.transform;
+        newRope.GetComponent<Rope>().grapple_Component = this;
         currentRope = newRope;
     }
     #endregion
@@ -155,6 +161,7 @@ public class Grapple : MonoBehaviour
     {
         // set reel state
         currentGrappleState = GrapplingState.Reeling;
+        reelStartTime = Time.time + reelStartLeniency;
     }
     public void Reel()
     {
@@ -170,6 +177,7 @@ public class Grapple : MonoBehaviour
             // if going to overshoot the lockpoint, lock onto the lockpoint
             if ((Vector2.Distance(this.transform.position, currentHook.GetComponent<Hook>().lockPoint.transform.position)) <= (grappleReelSpeed * Time.fixedDeltaTime))
             {
+               // Debug.Log("lockpoint check");
                 rb_Component.velocity = Vector2.zero;
                 rb_Component.position = currentHook.GetComponent<Hook>().lockPoint.transform.position;
                 currentGrappleState = GrapplingState.Holding;
@@ -197,7 +205,6 @@ public class Grapple : MonoBehaviour
             Destroy(currentRope);
             Destroy(currentHook);
             Destroy(currentBase);
-
             anim.SetBool("Grapple", false);
         }
     }
@@ -214,8 +221,8 @@ public class Grapple : MonoBehaviour
         Destroy(currentRope);
         Destroy(currentHook);
         Destroy(currentBase);
-
         anim.SetBool("Grapple", false);
+
     }
 
     #endregion
@@ -238,13 +245,29 @@ public class Grapple : MonoBehaviour
         }
     }
     #endregion
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (currentGrappleState == GrapplingState.Reeling)
         {
+            //Debug.Log("collision check");
             rb_Component.velocity = Vector2.zero;
             currentGrappleState = GrapplingState.Holding;
         }
     }
+    
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //Debug.Log("currently colliding");
+        
+        if (currentGrappleState == GrapplingState.Reeling&&rb_Component.velocity.magnitude<=.1f && holding==false&&Time.time>=reelStartTime)
+        {
+            //Debug.Log("collision check");
+            rb_Component.velocity = Vector2.zero;
+            currentGrappleState = GrapplingState.Holding;
+        }
+        
+    }
+
     #endregion
 }
