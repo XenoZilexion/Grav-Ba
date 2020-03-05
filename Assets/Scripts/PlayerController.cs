@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.C) && grounded)
+            if (Input.GetKeyDown(KeyCode.R) && grounded)
             {
                 Jump();
             }
