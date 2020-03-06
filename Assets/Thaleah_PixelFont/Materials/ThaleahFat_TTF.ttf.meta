@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 585188cdc4600544eb408bee749e4b3a
+guid: ce6d3e8a8d6f4264a8a876c087593e41
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -11,11 +11,13 @@ TrueTypeFontImporter:
   fontName: ThaleahFat
   fontNames:
   - ThaleahFat
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
