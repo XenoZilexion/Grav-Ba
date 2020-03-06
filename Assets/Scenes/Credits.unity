@@ -3053,8 +3053,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.076000005, y: 0.395}
   m_AnchorMax: {x: 0.60200006, y: 0.73800004}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: 0, y: -1}
+  m_AnchoredPosition: {x: 57.9, y: -0.5}
+  m_SizeDelta: {x: 115.8, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1440156168
 MonoBehaviour:
@@ -3078,7 +3078,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
-    m_FontSize: 40
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -3091,7 +3091,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Created by:
 
-    Rishi Barnwal - Gameplay Programming
+    Rishi Barnwal - Gameplay Programming/Audio
 
     Joseph Ryder - Art Assets / UI
 
