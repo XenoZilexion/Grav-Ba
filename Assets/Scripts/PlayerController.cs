@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     public float smoothingValue = 0.1f;
 
     public float jumpForce = 1.0f;
-    public float fallMultiplier = 2.0f;
+    public float jumpMultiplier = 1.5f;
+    public float fallMultiplier = 2.5f;
 
 
     public bool grounded;
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        ControllerInput();
+        //Debug.Log(currentGravity);
         CheckGround();
         Fall();
         FacingDirection();
@@ -62,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ControllerInput();
+        
     }
 
     private void ControllerInput()
@@ -140,6 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!grappling) {
             grounded = false;
+            rb.gravityScale = jumpMultiplier;
             switch (currentGravity)
             {
                 case gravityDirection.down:
@@ -178,13 +182,13 @@ public class PlayerController : MonoBehaviour
                     break;
             }
 
-            if (fallVelocity < 0)
+            //Debug.Log(fallVelocity);
+            if (fallVelocity < -0.0002f)
             {
                 rb.gravityScale = fallMultiplier;
             }
             else
             {
-                rb.gravityScale = 1.0f;
             }
         }
     }
