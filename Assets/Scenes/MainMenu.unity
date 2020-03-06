@@ -52418,8 +52418,8 @@ RectTransform:
   m_Father: {fileID: 2049056238}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3001686, y: 0.757548}
-  m_AnchorMax: {x: 0.70152116, y: 0.8727051}
+  m_AnchorMin: {x: 0.25736398, y: 0.7116398}
+  m_AnchorMax: {x: 0.739, y: 0.92537934}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -52445,7 +52445,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
-    m_FontSize: 127
+    m_FontSize: 175
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
@@ -52875,8 +52875,8 @@ Canvas:
   m_GameObject: {fileID: 2049056234}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 409124626}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -52885,7 +52885,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &2049056238
 RectTransform:

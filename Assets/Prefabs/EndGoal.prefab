@@ -126,7 +126,7 @@ MonoBehaviour:
   playerTag: Player
   slowSpeed: 0.6
   player: {fileID: 0}
-  delayDuration: 5
+  delayDuration: 3
   endSceneName: Credits
   endTime: 0
 --- !u!50 &8561112284919287258
