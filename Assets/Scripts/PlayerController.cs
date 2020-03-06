@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                Debug.Log("Key presed");
+                //Debug.Log("Key presed");
                 attemptJump = true;
                 bufferEnd = Time.time + bufferDuration;
             }
