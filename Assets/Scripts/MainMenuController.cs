@@ -18,4 +18,17 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("x"))
+        {
+            SceneManager.LoadScene(1);
+        }
+        //if left control is pressed go back (joystick left)
+        if (Input.GetKey("left"))
+        {
+            SceneManager.LoadScene(0);
+        }       
+    }
 }
