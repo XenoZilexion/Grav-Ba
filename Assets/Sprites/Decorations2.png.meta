@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: a577962ffac4a4c47a43acbe1429d85a
+guid: cfa4f460eb49f954a83dffe726027246
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1252243683051303324
-    second: Projectiles_0
+      213: -2025746524717621066
+    second: Decorations2_0
   - first:
-      213: 6781167332700664777
-    second: Projectiles_1
+      213: -2648197286843531717
+    second: Decorations2_1
+  - first:
+      213: 5920250334696897003
+    second: Decorations2_2
+  - first:
+      213: -5662457509526878360
+    second: Decorations2_3
+  - first:
+      213: 3488033360790368716
+    second: Decorations2_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -69,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -81,7 +90,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,7 +102,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,7 +114,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +126,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,43 +137,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Projectiles_0
+      name: Decorations2_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 57
-        width: 7
-        height: 7
+        x: 0
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec598d62951c30c4783917f56763531e
-      internalID: 1252243683051303324
+      spriteID: 0a5f98d6334e2db4e80ad3020363aeed
+      internalID: -2025746524717621066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Projectiles_1
+      name: Decorations2_1
       rect:
         serializedVersion: 2
-        x: 25
-        y: 59
-        width: 2
-        height: 1
-      alignment: 9
-      pivot: {x: 0.326025, y: 0.4304123}
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a357d3ee8bae06438f41b2f59c7f968
-      internalID: 6781167332700664777
+      spriteID: 46a7e50c5cb1b2d419b6c74b3839a686
+      internalID: -2648197286843531717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decorations2_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8510bd523938cd944a7ba42c5701d911
+      internalID: 5920250334696897003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decorations2_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc560d5b768e1ae43a7ce2e2bbc7aa40
+      internalID: -5662457509526878360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decorations2_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4830243fc898241b953db9f4085418
+      internalID: 3488033360790368716
       vertices: []
       indices: 
       edges: []
