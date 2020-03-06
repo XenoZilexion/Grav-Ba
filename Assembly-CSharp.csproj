@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Collectable.cs" />
     <Compile Include="Assets\Scripts\CreditsController.cs" />
     <Compile Include="Assets\Scripts\echoEffect.cs" />
+    <Compile Include="Assets\Scripts\EndGoal\EndGoal.cs" />
     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\Grapple\Grapple.cs" />
     <Compile Include="Assets\Scripts\Grapple\GrappleBase.cs" />
