@@ -62,20 +62,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Compile Include="Assets\RespawnPoint.cs" />
->>>>>>> 4026b1df7e4b11da0a70b7cecb8ff371f439bca2
     <Compile Include="Assets\Scripts\BlinkingText.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\Collectable.cs" />
     <Compile Include="Assets\Scripts\CreditsController.cs" />
     <Compile Include="Assets\Scripts\echoEffect.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\Scripts\EndGoal\EndGoal.cs" />
-=======
->>>>>>> 4026b1df7e4b11da0a70b7cecb8ff371f439bca2
     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\Grapple\Grapple.cs" />
     <Compile Include="Assets\Scripts\Grapple\GrappleBase.cs" />

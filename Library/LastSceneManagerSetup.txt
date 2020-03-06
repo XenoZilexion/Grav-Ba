@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/GrappleArtTest.unity
-=======
 - path: Assets/NewLevel.unity
->>>>>>> 4026b1df7e4b11da0a70b7cecb8ff371f439bca2
   isLoaded: 1
   isActive: 1
   isSubScene: 0
