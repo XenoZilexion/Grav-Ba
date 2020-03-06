@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KillDetection : MonoBehaviour
 {
-    public Vector3 restartPosition = new Vector3(-6.6f, 0.8f, 0);
+    public Vector3 restartPosition = new Vector3(-4.5f, 2.5f, 0);
 
     public void respawnPlayer()
     {
@@ -23,6 +23,13 @@ public class KillDetection : MonoBehaviour
         if (canKill != null)
         {
             respawnPlayer();
+        }
+
+        RespawnPoint respawnPoint = checkCollision.GetComponent<RespawnPoint>();
+
+        if (respawnPoint != null)
+        {
+            restartPosition = transform.position;
         }
     }
     

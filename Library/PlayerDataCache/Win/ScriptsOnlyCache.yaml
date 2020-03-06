@@ -1,40 +1,124 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor-firstpass.dll:
+    - UnityEditor.CoordinateBrush
+    - UnityEditor.GameObjectBrush
+    - UnityEditor.LineBrush
+    - UnityEditor.TintBrush
+    - UnityEditor.TintBrushSmooth
     Assembly-CSharp-firstpass.dll:
-    - Cinemachine.CinemachineBlenderSettings
-    - Cinemachine.CinemachineBrain
-    - Cinemachine.CinemachineFramingTransposer
-    - Cinemachine.CinemachinePipeline
-    - Cinemachine.CinemachineSameAsFollowObject
-    - Cinemachine.CinemachineStateDrivenCamera
-    - Cinemachine.CinemachineVirtualCamera
     - UnityEngine.RuleTile
     Assembly-CSharp.dll:
+    - BlinkingText
     - CameraController
+    - Collectable
+    - CreditsController
+    - EnemyHealth
     - Grapple
     - GrappleBase
     - Hook
+    - KillDetection
+    - KillPlayer
+    - MainMenuController
+    - PlatformAI
     - PlayerController
+    - Projectile
     - Rope
-    Unity.2D.Sprite.Editor.dll:
-    - UnityEditor.U2D.Sprites.SpriteEditorWindow
+    - Shooting
+    - StandAndEngage
+    - UIController
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridPaintPaletteClipboard
+    - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
+    - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/GrappleArtTest.unity:
+    Assets/Scenes/Credits.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 624}
+    - Class: 114
+      Script: {instanceID: 9700}
+    - Class: 114
+      Script: {instanceID: 9890}
+    - Class: 114
+      Script: {instanceID: 10112}
+    - Class: 114
+      Script: {instanceID: 10376}
+    - Class: 114
+      Script: {instanceID: 10582}
+    - Class: 114
+      Script: {instanceID: 11018}
+    - Class: 114
+      Script: {instanceID: 11354}
+    - Class: 114
+      Script: {instanceID: 11750}
+    - Class: 114
+      Script: {instanceID: 12796}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
+      Script: {instanceID: 0}
+    Assets/Scenes/LevelDesign_Layout.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -68,40 +152,149 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9650}
+      Script: {instanceID: 624}
     - Class: 114
-      Script: {instanceID: 9668}
+      Script: {instanceID: 9688}
     - Class: 114
-      Script: {instanceID: 9682}
+      Script: {instanceID: 9700}
     - Class: 114
-      Script: {instanceID: 9782}
+      Script: {instanceID: 9706}
     - Class: 114
-      Script: {instanceID: 10074}
+      Script: {instanceID: 9754}
     - Class: 114
-      Script: {instanceID: 10330}
+      Script: {instanceID: 9820}
     - Class: 114
-      Script: {instanceID: 10382}
+      Script: {instanceID: 9890}
     - Class: 114
-      Script: {instanceID: 10662}
+      Script: {instanceID: 9966}
     - Class: 114
-      Script: {instanceID: 10958}
+      Script: {instanceID: 10112}
     - Class: 114
-      Script: {instanceID: 11104}
+      Script: {instanceID: 10352}
     - Class: 114
-      Script: {instanceID: 11188}
+      Script: {instanceID: 10368}
     - Class: 114
-      Script: {instanceID: 11684}
+      Script: {instanceID: 10538}
     - Class: 114
-      Script: {instanceID: 11714}
+      Script: {instanceID: 10582}
     - Class: 114
-      Script: {instanceID: 11772}
+      Script: {instanceID: 10748}
+    - Class: 114
+      Script: {instanceID: 10986}
+    - Class: 114
+      Script: {instanceID: 11212}
+    - Class: 114
+      Script: {instanceID: 11354}
+    - Class: 114
+      Script: {instanceID: 11730}
+    - Class: 114
+      Script: {instanceID: 11752}
+    - Class: 114
+      Script: {instanceID: 11810}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 19719996
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
+      Script: {instanceID: 0}
+    Assets/Scenes/MainMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
+      Script: {instanceID: 0}
+    - Class: 66
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 624}
+    - Class: 114
+      Script: {instanceID: 9700}
+    - Class: 114
+      Script: {instanceID: 9890}
+    - Class: 114
+      Script: {instanceID: 9934}
+    - Class: 114
+      Script: {instanceID: 10112}
+    - Class: 114
+      Script: {instanceID: 10376}
+    - Class: 114
+      Script: {instanceID: 10538}
+    - Class: 114
+      Script: {instanceID: 10582}
+    - Class: 114
+      Script: {instanceID: 10810}
+    - Class: 114
+      Script: {instanceID: 10986}
+    - Class: 114
+      Script: {instanceID: 11018}
+    - Class: 114
+      Script: {instanceID: 11354}
+    - Class: 114
+      Script: {instanceID: 11750}
+    - Class: 114
+      Script: {instanceID: 12794}
+    - Class: 114
+      Script: {instanceID: 12796}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     - Class: 19719996
       Script: {instanceID: 0}
@@ -114,7 +307,7 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: f412f7365624cc6dabe1ac387510cfb7
+      Hash: 511c748767e32f4ac1e555c87e96d104
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Rope
@@ -126,7 +319,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 1dd7f8c261a44cdf50520b02e72049d9
+      Hash: 06d1d252ae9e05e156fff17041dca50d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Hook
@@ -354,7 +547,7 @@ ScriptsOnlyBuild:
     className: UIController
   - hash:
       serializedVersion: 2
-      Hash: 029383bfb34af070aeb51e245d0e7b74
+      Hash: eae688ef6c36a3e3847f50594ec53c56
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -840,7 +1033,7 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: 31f3f54545a6686d1ffa9240b4faaf90
+      Hash: dfc4cb090ec81f5b5dc035f69b6fb962
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Grapple
@@ -850,7 +1043,27 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 19dda0e1446ebe22d58b6476d04b8daa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: echoEffect
+  - hash:
+      serializedVersion: 2
+      Hash: 4f8d893cd2302ff4291897ea51c72807
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CreditsController
+  - hash:
+      serializedVersion: 2
+      Hash: 4e404565fa82b70e66936cc045b027dd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlinkingText
   platform: 5
   scenePathNames:
-  - Assets/Scenes/GrappleArtTest.unity
-  playerPath: C:/Users/barnwal/Desktop/3/Grav-Ba.exe
+  - Assets/Scenes/MainMenu.unity
+  - Assets/Scenes/LevelDesign_Layout.unity
+  - Assets/Scenes/Credits.unity
+  playerPath: F:/Level test/Grav-Ba.exe
