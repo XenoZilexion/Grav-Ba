@@ -74,7 +74,9 @@ GameObject:
   - component: {fileID: 8268119628731775670}
   - component: {fileID: 8268119628731775671}
   - component: {fileID: 8268119628731775669}
+  - component: {fileID: 6759392258427275041}
   - component: {fileID: 141900127}
+  - component: {fileID: 2702420652985872719}
   - component: {fileID: -1002521126375498098}
   m_Layer: 0
   m_Name: George 2.0
@@ -233,6 +235,23 @@ MonoBehaviour:
   sr_Component: {fileID: 0}
   grapple_Component: {fileID: 0}
   grappling: 0
+--- !u!114 &6759392258427275041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268119628731775665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bc2ab454d5bea418ca971f48b1a49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  ScoreText: {fileID: 0}
+  Score: 0
+  addedScore: 10
+  timeRemaining: 300
 --- !u!114 &141900127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +268,19 @@ MonoBehaviour:
   player: {fileID: 8268119628731775665}
   rotationThreshold: 30
   isRotating: 0
+--- !u!114 &2702420652985872719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268119628731775665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e355b5bdc3004042a0732192dcbf66d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartPosition: {x: -6.6, y: 0.8, z: 0}
 --- !u!114 &-1002521126375498098
 MonoBehaviour:
   m_ObjectHideFlags: 0
