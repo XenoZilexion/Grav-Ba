@@ -46,6 +46,11 @@ public class UIController : MonoBehaviour
 
         if (pickUp != null)
         {
+            AudioSource source = pickUp.gameObject.GetComponent<AudioSource>();
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
             print("Coin Grabbed");
             Destroy(collision.gameObject);
             addScore();

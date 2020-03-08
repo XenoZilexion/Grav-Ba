@@ -13,6 +13,7 @@ ScriptsOnlyBuild:
     - CameraController
     - Collectable
     - CreditsController
+    - EndGoal
     - EnemyHealth
     - Grapple
     - GrappleBase
@@ -20,12 +21,11 @@ ScriptsOnlyBuild:
     - KillDetection
     - KillPlayer
     - MainMenuController
+    - PatrolAI
     - PlatformAI
     - PlayerController
-    - Projectile
+    - RespawnPoint
     - Rope
-    - Shooting
-    - StandAndEngage
     - UIController
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
@@ -47,6 +47,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Outline
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/Credits.unity:
@@ -73,25 +74,27 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 624}
+      Script: {instanceID: 578}
     - Class: 114
-      Script: {instanceID: 9700}
+      Script: {instanceID: 9654}
     - Class: 114
-      Script: {instanceID: 9890}
+      Script: {instanceID: 9844}
     - Class: 114
-      Script: {instanceID: 10112}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10376}
+      Script: {instanceID: 10332}
     - Class: 114
-      Script: {instanceID: 10582}
+      Script: {instanceID: 10538}
     - Class: 114
-      Script: {instanceID: 11018}
+      Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 10982}
     - Class: 114
-      Script: {instanceID: 11750}
+      Script: {instanceID: 11318}
     - Class: 114
-      Script: {instanceID: 12796}
+      Script: {instanceID: 11650}
+    - Class: 114
+      Script: {instanceID: 11714}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -127,6 +130,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
     - Class: 48
@@ -145,52 +150,60 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 624}
+      Script: {instanceID: 578}
     - Class: 114
-      Script: {instanceID: 9688}
+      Script: {instanceID: 9642}
     - Class: 114
-      Script: {instanceID: 9700}
+      Script: {instanceID: 9654}
     - Class: 114
-      Script: {instanceID: 9706}
+      Script: {instanceID: 9660}
     - Class: 114
-      Script: {instanceID: 9754}
+      Script: {instanceID: 9694}
     - Class: 114
-      Script: {instanceID: 9820}
+      Script: {instanceID: 9774}
     - Class: 114
-      Script: {instanceID: 9890}
+      Script: {instanceID: 9844}
     - Class: 114
-      Script: {instanceID: 9966}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10112}
+      Script: {instanceID: 10308}
     - Class: 114
-      Script: {instanceID: 10352}
+      Script: {instanceID: 10324}
     - Class: 114
-      Script: {instanceID: 10368}
+      Script: {instanceID: 10494}
     - Class: 114
       Script: {instanceID: 10538}
     - Class: 114
-      Script: {instanceID: 10582}
+      Script: {instanceID: 10606}
     - Class: 114
-      Script: {instanceID: 10748}
+      Script: {instanceID: 10936}
     - Class: 114
-      Script: {instanceID: 10986}
+      Script: {instanceID: 10950}
     - Class: 114
-      Script: {instanceID: 11212}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 11318}
     - Class: 114
-      Script: {instanceID: 11730}
+      Script: {instanceID: 11650}
     - Class: 114
-      Script: {instanceID: 11752}
+      Script: {instanceID: 11694}
     - Class: 114
-      Script: {instanceID: 11810}
+      Script: {instanceID: 11716}
+    - Class: 114
+      Script: {instanceID: 11774}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -240,6 +253,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -247,35 +264,37 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 624}
+      Script: {instanceID: 578}
     - Class: 114
-      Script: {instanceID: 9700}
+      Script: {instanceID: 9654}
     - Class: 114
-      Script: {instanceID: 9890}
+      Script: {instanceID: 9844}
     - Class: 114
-      Script: {instanceID: 9934}
+      Script: {instanceID: 9888}
     - Class: 114
-      Script: {instanceID: 10112}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10376}
+      Script: {instanceID: 10332}
+    - Class: 114
+      Script: {instanceID: 10494}
     - Class: 114
       Script: {instanceID: 10538}
     - Class: 114
-      Script: {instanceID: 10582}
+      Script: {instanceID: 10610}
     - Class: 114
-      Script: {instanceID: 10810}
+      Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 10986}
+      Script: {instanceID: 10772}
     - Class: 114
-      Script: {instanceID: 11018}
+      Script: {instanceID: 10950}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 10982}
     - Class: 114
-      Script: {instanceID: 11750}
+      Script: {instanceID: 11318}
     - Class: 114
-      Script: {instanceID: 12794}
+      Script: {instanceID: 11650}
     - Class: 114
-      Script: {instanceID: 12796}
+      Script: {instanceID: 11714}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -355,7 +374,7 @@ ScriptsOnlyBuild:
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
+      Hash: 00f6d4a0afc38711f4f64b9d7d29e372
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Projectile
@@ -511,6 +530,12 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
+      Hash: 19dda0e1446ebe22d58b6476d04b8daa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: echoEffect
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -649,6 +674,18 @@ ScriptsOnlyBuild:
     className: CinemachineComposer
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RespawnPoint
+  - hash:
+      serializedVersion: 2
+      Hash: 4f8d893cd2302ff4291897ea51c72807
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CreditsController
+  - hash:
+      serializedVersion: 2
       Hash: 15882a52798c275361cd0a3ada984ec5
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: Cinemachine
@@ -673,6 +710,12 @@ ScriptsOnlyBuild:
     className: CinemachinePipeline
   - hash:
       serializedVersion: 2
+      Hash: 4e404565fa82b70e66936cc045b027dd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlinkingText
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -685,7 +728,7 @@ ScriptsOnlyBuild:
     className: CinemachinePath
   - hash:
       serializedVersion: 2
-      Hash: 29bec0b7a6915ac2a881e4c2ec08b8ba
+      Hash: 7095ad3143afe55af9b12537356662b5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shooting
@@ -725,6 +768,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: Cinemachine
     className: CinemachineTransposer
+  - hash:
+      serializedVersion: 2
+      Hash: c64f4de8c00349251fe035a405070708
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EndGoal
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1043,24 +1092,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 19dda0e1446ebe22d58b6476d04b8daa
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: echoEffect
-  - hash:
-      serializedVersion: 2
-      Hash: 4f8d893cd2302ff4291897ea51c72807
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CreditsController
-  - hash:
-      serializedVersion: 2
-      Hash: 4e404565fa82b70e66936cc045b027dd
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BlinkingText
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

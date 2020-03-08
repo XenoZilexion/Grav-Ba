@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
 
     private void ControllerInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)&&isRotating == false)
+        if (Input.GetKeyDown(KeyCode.LeftAlt)&&isRotating == false)
         {
             if(--index < 0)
             {
@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
             pc.ChangeGravity(angles[index]);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && isRotating == false)
+        if (Input.GetKeyDown(KeyCode.Space) && isRotating == false)
         {
             if(++index > 3)
             {

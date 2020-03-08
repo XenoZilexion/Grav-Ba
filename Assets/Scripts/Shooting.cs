@@ -8,11 +8,10 @@ public class Shooting : MonoBehaviour
     private float startTimeBtwShots;
 
     public GameObject projectile;
-    public Transform player;
+    public Transform target;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         startTimeBtwShots = timeBtwShots;
     }
 

@@ -5,14 +5,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed;
-    private Transform player;
+    [SerializeField] private Transform targetTransform;
     private Vector3 target;
 
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        target = new Vector3(player.position.x, player.position.y, player.position.z);
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = new Vector3(targetTransform.position.x, targetTransform.position.y, targetTransform.position.z);
     }
 
     // Update is called once per frame
