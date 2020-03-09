@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 6077677492883251747}
   - component: {fileID: 1047197626898085856}
   - component: {fileID: -4901100503485550850}
-  - component: {fileID: 4915362059571426452}
   - component: {fileID: 6725438864052482412}
   m_Layer: 9
   m_Name: GrappleHook
@@ -159,32 +158,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &4915362059571426452
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6077677492883251746}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.12371004, y: -0.0008350909}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4375, y: 0.8125}
-    newSize: {x: 0.5, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.18935436, y: 0.18741935}
-  m_EdgeRadius: 0
 --- !u!58 &6725438864052482412
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -198,6 +171,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.062534265, y: 0}
+  m_Offset: {x: 0.05, y: -0.0008}
   serializedVersion: 2
-  m_Radius: 0.09344927
+  m_Radius: 0.08106745

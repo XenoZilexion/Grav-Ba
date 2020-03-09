@@ -86,6 +86,9 @@ public class Hook : MonoBehaviour
             hooked = true;
             //  stop hook
             origin = this.transform.position;
+            if (rb_Component == null) {
+                rb_Component = GetComponent<Rigidbody2D>();
+            }
             rb_Component.velocity = Vector2.zero;
             rb_Component.isKinematic = true;
             // hook lock
